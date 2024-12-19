@@ -1,0 +1,16 @@
+{
+	"id": "draft",
+	"name": "Drafting",
+	"display_name": "Drafting",
+	"author": ["spire_winder"],
+	"description": "A Balatro mod that replaces standard deck construction with a draft.",
+	"prefix": "draft",
+	"main_file": "draft.lua",
+	"priority": 0,
+	"badge_colour": "42c8f5",
+	"badge_text_colour": "636363",
+	"version": "0.1",
+	"dependencies": [
+		"Steamodded (>=1.0.0~ALPHA-1217b)"
+	]
+}
