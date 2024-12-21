@@ -206,10 +206,10 @@ end
 
 G.FUNCS.least_popular_rank = function()
     local ranks = G.FUNCS.rank_dist()
-    local min = 0
+    local min
     local ret = {}
     for key, value in pairs(ranks) do
-        if ranks[key] < min then
+        if not min or ranks[key] < min then
             min = ranks[key]
         end
     end

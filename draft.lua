@@ -2,6 +2,13 @@
 ----------------------------------------------
 ------------MOD CODE -------------------------
 
+SMODS.Atlas({
+	key = "modicon",
+	path = "icon.png",
+	px = 32,
+	py = 32,
+}):register()
+
 SMODS.Atlas {
 	object_type = "Atlas",
 	key = "tag_atlas",
