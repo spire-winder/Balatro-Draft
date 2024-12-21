@@ -74,7 +74,7 @@ G.FUNCS.create_playing_cards_in_deck = function(t)
     if t.straight then
         local valids = {}
         for _, v in pairs(t.ranks) do
-            if (v.id <= 15 - t.amount) then table.insert(valids, v) end
+            if (v.id <= 15 - t.amount) or v.id == 14 then table.insert(valids, v) end
         end
         t.ranks = valids
     end
@@ -132,4 +132,94 @@ function loc_colour(_c, _default)
 	  G.ARGS.LOC_COLOURS.spade = G.C.SUITS.Spades
 	  G.ARGS.LOC_COLOURS.club = G.C.SUITS.Clubs
 	  return lc(_c, _default)
+end
+
+G.FUNCS.suit_dist = function ()
+    local suits = {}
+    for key, value in pairs(SMODS.Suits) do
+        suits[value] = 0
+    end
+    for i = 1, #G.playing_cards do
+        for key, value in pairs(SMODS.Suits) do
+            if G.playing_cards[i]:is_suit(key) then
+                suits[value] = suits[value] + 1
+            end
+        end
+    end
+    return suits
+end
+
+G.FUNCS.popular_suit = function()
+    local suits = G.FUNCS.suit_dist()
+    local max = 0
+    local ret = {}
+    for key, value in pairs(suits) do
+        if suits[key] > max then
+            max = suits[key]
+        end
+    end
+    for key, value in pairs(suits) do
+        if suits[key] == max then
+            table.insert(ret, key)
+        end
+    end
+    if ret == {} then
+        ret = SMODS.Suits
+    end
+    return ret
+end
+
+G.FUNCS.rank_dist = function ()
+    local ranks = {}
+    for key, value in pairs(SMODS.Ranks) do
+        ranks[value] = 0
+    end
+    for i = 1, #G.playing_cards do
+        for key, value in pairs(SMODS.Ranks) do
+            if G.playing_cards[i].base.value == key then
+                ranks[value] = ranks[value] + 1
+            end
+        end
+    end
+    return ranks
+end
+
+G.FUNCS.popular_rank = function()
+    local ranks = G.FUNCS.rank_dist()
+    local max = 0
+    local ret = {}
+    for key, value in pairs(ranks) do
+        if ranks[key] > max then
+            max = ranks[key]
+        end
+    end
+    for key, value in pairs(ranks) do
+        if ranks[key] == max then
+            table.insert(ret, key)
+        end
+    end
+    if ret == {} then
+        ret = SMODS.Ranks
+    end
+    return ret
+end
+
+G.FUNCS.least_popular_rank = function()
+    local ranks = G.FUNCS.rank_dist()
+    local min = 0
+    local ret = {}
+    for key, value in pairs(ranks) do
+        if ranks[key] < min then
+            min = ranks[key]
+        end
+    end
+    for key, value in pairs(ranks) do
+        if ranks[key] == min then
+            table.insert(ret, key)
+        end
+    end
+    if ret == {} then
+        ret = SMODS.Ranks
+    end
+    return ret
 end

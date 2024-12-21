@@ -20,6 +20,7 @@ SMODS.Booster {
         return { vars = { card.config.center.config.choose, card.ability.extra } }
     end,
     group_key = "k_draft_draft_pack",
+	in_pool = function(self, args) return false end
 }
 
 SMODS.Tag {
@@ -58,4 +59,5 @@ SMODS.Tag {
 			return true
 		end
 	end,
+	in_pool = function(self, args) return false end
 }
