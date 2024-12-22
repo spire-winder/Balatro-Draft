@@ -556,6 +556,7 @@ local multiplexer = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -2, amount = 5}},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_mult
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
@@ -576,6 +577,7 @@ local bonusround = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -2, amount = 5}},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_bonus
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
@@ -596,6 +598,7 @@ local steelworker = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -2, amount = 3}},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_steel
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
@@ -616,6 +619,7 @@ local wildchild = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -2, amount = 3}},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_wild
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
@@ -636,6 +640,7 @@ local fragile = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -2, amount = 3}},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_glass
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
@@ -656,6 +661,7 @@ local totallybaked = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -2, amount = 3}},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_stone
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
@@ -676,6 +682,7 @@ local devilsnumber = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -6, amount = 3}},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_gold
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
@@ -696,6 +703,7 @@ local gamblersdream = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -4, amount = 3}},
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_lucky
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
