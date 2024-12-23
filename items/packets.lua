@@ -39,7 +39,7 @@ local slimpickings = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 3}},
+    config = {extra = {cost = -1, amount = 3}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -50,16 +50,16 @@ local slimpickings = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {})
     end,
 }
---Pocket Change
-local pocketchange = SMODS.Consumable {
+--ol' reliable
+local olreliable = SMODS.Consumable {
     set = "Packet",
-    name = "draft-pocketchange",
-    key = "pocketchange",
+    name = "draft-olreliable",
+    key = "olreliable",
     pos = {x = 2, y = 0},
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 2, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -79,7 +79,7 @@ local loan = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 3, amount = 8}},
+    config = {extra = {cost = 1, amount = 8}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -99,7 +99,7 @@ local capitalinvestment = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 4, amount = 10}},
+    config = {extra = {cost = 2, amount = 10}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -119,7 +119,7 @@ local suitup = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -166,7 +166,7 @@ local middleoftheroad = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -217,7 +217,7 @@ local pocketaces = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -1, amount = 2}},
+    config = {extra = {cost = -2, amount = 2}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -237,7 +237,7 @@ local turkey = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 3}},
+    config = {extra = {cost = -1, amount = 3}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -257,7 +257,7 @@ local eventheodds = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -284,7 +284,7 @@ local oddoneout = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -334,7 +334,7 @@ local straightaway = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -394,7 +394,7 @@ local heavyheart = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -414,7 +414,7 @@ local intherough = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -434,7 +434,7 @@ local hittheclub = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -454,7 +454,7 @@ local inspades = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5}},
+    config = {extra = {cost = 0, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -494,7 +494,7 @@ local alternative = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 2, amount = 3}},
+    config = {extra = {cost = 1, amount = 3}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -514,7 +514,7 @@ local bandwagon = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 5}},
+    config = {extra = {cost = -1, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -534,7 +534,7 @@ local anythinggoes = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -1, amount = 3}},
+    config = {extra = {cost = -2, amount = 3}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -554,10 +554,10 @@ local multiplexer = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 5}},
+    config = {extra = {cost = -3, amount = 5}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS.m_mult
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_special, card.ability.extra.amount} }
     end,
     can_use = function(self, card)
         return true
@@ -575,7 +575,7 @@ local bonusround = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 5}},
+    config = {extra = {cost = -3, amount = 5}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS.m_bonus
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
@@ -596,7 +596,7 @@ local steelworker = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 3}},
+    config = {extra = {cost = -4, amount = 3}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS.m_steel
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
@@ -617,7 +617,7 @@ local wildchild = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 3}},
+    config = {extra = {cost = -4, amount = 3}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS.m_wild
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
@@ -638,7 +638,7 @@ local fragile = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 3}},
+    config = {extra = {cost = -4, amount = 3}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS.m_glass
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
@@ -659,7 +659,7 @@ local totallybaked = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 3}},
+    config = {extra = {cost = -4, amount = 3}},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue+1] = G.P_CENTERS.m_stone
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
@@ -722,7 +722,7 @@ local planetaryalignment = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 5}},
+    config = {extra = {cost = -2, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -750,7 +750,7 @@ local tarotreading = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 5}},
+    config = {extra = {cost = -2, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -778,7 +778,7 @@ local spectralforce = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 5}},
+    config = {extra = {cost = -4, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -806,7 +806,7 @@ local justriffin = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 5}},
+    config = {extra = {cost = -4, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -838,7 +838,7 @@ local wheelofdestiny = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 5, amount_special = 1, odds = 4}},
+    config = {extra = {cost = -1, amount = 5, amount_special = 1, odds = 4}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), "" .. (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds , card.ability.extra.amount_special, card.ability.extra.amount} }
     end,
@@ -911,9 +911,9 @@ local myprecious = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 4, amount_special = 1}},
+    config = {extra = {cost = -3, amount = 4, amount_special = 1}},
     loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_special, card.ability.extra.amount} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_special} }
     end,
     can_use = function(self, card)
         return true
@@ -933,7 +933,7 @@ local sealthedeal = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 4, amount_special = 1}},
+    config = {extra = {cost = -3, amount = 4, amount_special = 1}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_special} }
     end,
@@ -955,7 +955,7 @@ local chosenone = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -5, amount = 0, amount_special = 1}},
+    config = {extra = {cost = -6, amount = 0, amount_special = 1}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_special} }
     end,

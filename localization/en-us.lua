@@ -60,8 +60,8 @@ return {
                     "cards"
                 },
             },
-            c_draft_pocketchange = {
-                name = "Pocket Change",
+            c_draft_olreliable = {
+                name = "Ol' Reliable",
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards"
