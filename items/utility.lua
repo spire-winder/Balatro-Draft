@@ -117,7 +117,9 @@ G.FUNCS.packet_effect = function(card, t)
         end
         t.amount = card.ability.extra.amount
         G.FUNCS.create_playing_cards_in_deck(t)
-        G.GAME.starting_deck_size = #G.playing_cards
+        if G.STATE == G.STATES.SMODS_BOOSTER_OPENED then
+            G.GAME.starting_deck_size = #G.playing_cards
+        end
         return true end }))
     delay(0.6)
 end
