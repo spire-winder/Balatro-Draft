@@ -143,8 +143,8 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random {C:attention}Jack",
-                    "{C:green}X#2#{} random {C:attention}Queen",
-                    "{C:green}X#2#{} random {C:attention}King"
+                    "{C:green}X#3#{} random {C:attention}Queen",
+                    "{C:green}X#4#{} random {C:attention}King"
                 },
             },
             c_draft_straightaway = {
