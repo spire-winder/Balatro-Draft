@@ -5,12 +5,18 @@ SMODS.Booster {
     kind = "Packet",
     atlas = "pack_atlas",
     pos = { x = 0, y = 0 },
-    config = {extra = 3, choose = 1 },
+    config = {extra = 3, choose = 1},
     cost = 4,
     order = 1,
     weight = 0.96,
-    create_card = function(self, card)
-        return create_card("Packet", G.pack_cards, nil, nil, true, true, nil, "draft_packet")
+    create_card = function(self, card, i)
+		if i == 1 then
+        	return create_card("PacketPositive", G.pack_cards, nil, nil, true, true, nil, "draft_packet")
+		elseif i == 2 then
+        	return create_card("PacketNeutral", G.pack_cards, nil, nil, true, true, nil, "draft_packet")
+		else
+        	return create_card("PacketNegative", G.pack_cards, nil, nil, true, true, nil, "draft_packet")
+		end
     end,
     ease_background_colour = function(self)
         ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Packet)

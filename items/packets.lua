@@ -1009,3 +1009,64 @@ SMODS.Consumable {
         end
 	end,
 }]]
+
+SMODS.ObjectType {
+    key="PacketPositive",
+    default = "c_draft_loan",
+    cards={
+        ["c_draft_loan"] = true,
+        ["c_draft_capitalinvestment"] = true,
+        ["c_draft_fullgambit"] = true,
+        ["c_draft_alternative"] = true,
+    }
+}
+
+SMODS.ObjectType {
+    key="PacketNeutral",
+    default = "c_draft_olreliable",
+    cards={
+        ["c_draft_olreliable"] = true,
+        ["c_draft_suitup"] = true,
+        ["c_draft_hackerman"] = true,
+        ["c_draft_middleoftheroad"] = true,
+        ["c_draft_eventheodds"] = true,
+        ["c_draft_oddoneout"] = true,
+        ["c_draft_straightaway"] = true,
+        ["c_draft_plunger"] = true,
+        ["c_draft_heavyheart"] = true,
+        ["c_draft_intherough"] = true,
+        ["c_draft_hittheclub"] = true,
+        ["c_draft_inspades"] = true,
+        ["c_draft_suitup"] = true,
+    }
+}
+
+SMODS.ObjectType {
+    key="PacketNegative",
+    default = "c_draft_slimpickings",
+    cards={
+        ["c_draft_slimpickings"] = true,
+        ["c_draft_faceoff"] = true,
+        ["c_draft_pocketaces"] = true,
+        ["c_draft_turkey"] = true,
+        ["c_draft_copycat"] = true,
+        ["c_draft_bandwagon"] = true,
+        ["c_draft_anythinggoes"] = true,
+        ["c_draft_multiplexer"] = true,
+        ["c_draft_bonusround"] = true,
+        ["c_draft_steelworker"] = true,
+        ["c_draft_wildchild"] = true,
+        ["c_draft_fragile"] = true,
+        ["c_draft_totallybaked"] = true,
+        ["c_draft_devilsnumber"] = true,
+        ["c_draft_gamblersdream"] = true,
+        ["c_draft_planetaryalignment"] = true,
+        ["c_draft_tarotreading"] = true,
+        ["c_draft_spectralforce"] = true,
+        ["c_draft_justriffin"] = true,
+        ["c_draft_wheelofdestiny"] = true,
+        ["c_draft_myprecious"] = true,
+        ["c_draft_sealthedeal"] = true,
+        ["c_draft_chosenone"] = true,
+    }
+}
