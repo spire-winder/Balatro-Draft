@@ -112,6 +112,26 @@ return {
                     "{C:attention}abundant{} suit"
                 },
             },
+            c_draft_roadnottaken = {
+                name = "Road Not Taken",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random cards",
+                    "{C:red}not{} of your {C:attention}most",
+                    "{C:attention}abundant{} suit"
+                },
+            },
+            c_draft_fibyourwayout = {
+                name = "Fib Your Way Out",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random {C:attention}Ace{}",
+                    "{C:green}X#3#{} random {C:attention}2{}",
+                    "{C:green}X#4#{} random {C:attention}3{}",
+                    "{C:green}X#5#{} random {C:attention}5{}",
+                    "{C:green}X#6#{} random {C:attention}8{}",
+                },
+            },
             c_draft_copycat = {
                 name = "Copycat",
                 text = {
@@ -126,7 +146,7 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
-                    "of your {C:attention}least",
+                    "{C:red}not{} of your {C:attention}most",
                     "{C:attention}abundant{} rank"
                 },
             },

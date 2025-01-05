@@ -166,7 +166,47 @@ G.FUNCS.popular_suit = function()
             table.insert(ret, key)
         end
     end
-    if ret == {} then
+    if next(ret) == nil then
+        ret = SMODS.Suits
+    end
+    return ret
+end
+
+G.FUNCS.not_popular_suit = function()
+    local suits = G.FUNCS.suit_dist()
+    local max = 0
+    local ret = {}
+    for key, value in pairs(suits) do
+        if suits[key] > max then
+            max = suits[key]
+        end
+    end
+    for key, value in pairs(suits) do
+        if suits[key] ~= max then
+            table.insert(ret, key)
+        end
+    end
+    if next(ret) == nil then
+        ret = SMODS.Suits
+    end
+    return ret
+end
+
+G.FUNCS.least_popular_suit = function()
+    local suits = G.FUNCS.suit_dist()
+    local min
+    local ret = {}
+    for key, value in pairs(suits) do
+        if not min or suits[key] < min then
+            min = suits[key]
+        end
+    end
+    for key, value in pairs(suits) do
+        if suits[key] == min then
+            table.insert(ret, key)
+        end
+    end
+    if next(ret) == nil then
         ret = SMODS.Suits
     end
     return ret
@@ -201,7 +241,27 @@ G.FUNCS.popular_rank = function()
             table.insert(ret, key)
         end
     end
-    if ret == {} then
+    if next(ret) == nil then
+        ret = SMODS.Ranks
+    end
+    return ret
+end
+
+G.FUNCS.not_popular_rank = function()
+    local ranks = G.FUNCS.rank_dist()
+    local max = 0
+    local ret = {}
+    for key, value in pairs(ranks) do
+        if ranks[key] > max then
+            max = ranks[key]
+        end
+    end
+    for key, value in pairs(ranks) do
+        if ranks[key] ~= max then
+            table.insert(ret, key)
+        end
+    end
+    if next(ret) == nil then
         ret = SMODS.Ranks
     end
     return ret
@@ -221,8 +281,28 @@ G.FUNCS.least_popular_rank = function()
             table.insert(ret, key)
         end
     end
-    if ret == {} then
+    if next(ret) == nil then
         ret = SMODS.Ranks
     end
     return ret
 end
+
+
+G.FUNCS.can_skip_draft_booster = function(e)
+    if G.pack_cards and
+    (G.STATE == G.STATES.SMODS_BOOSTER_OPENED or G.STATE == G.STATES.PLANET_PACK or G.STATE == G.STATES.STANDARD_PACK or G.STATE == G.STATES.BUFFOON_PACK or (G.hand and (G.hand.cards[1] or (G.hand.config.card_limit <= 0)))) then 
+        e.config.colour = G.C.RED
+        e.config.button = 'skip_draft_booster'
+    else
+        e.config.colour = G.C.UI.BACKGROUND_INACTIVE
+        e.config.button = nil
+    end
+end
+
+G.FUNCS.skip_draft_booster = function(e)
+    ease_dollars(SMODS.OPENED_BOOSTER.ability.skip_cost)
+    for i = 1, #G.jokers.cards do
+      G.jokers.cards[i]:calculate_joker({skipping_booster = true})
+    end
+    G.FUNCS.end_consumeable(e)
+  end

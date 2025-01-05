@@ -303,6 +303,38 @@ local oddoneout = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {ranks=odds})
     end,
 }
+--fibyourwayout
+local fibyourwayout = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-fibyourwayout",
+    key = "fibyourwayout",
+    pos = {x = 6, y = 1},
+    atlas = 'packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = 0, amount = 1, amount_1 = 1,  amount_2 = 1,  amount_3 = 1,  amount_4 = 1}},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1, card.ability.extra.amount_2, card.ability.extra.amount_3, card.ability.extra.amount_4} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks["Ace"]}})
+        for i = 1, card.ability.extra.amount_1, 1 do
+            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["2"]}})
+        end
+        for i = 1, card.ability.extra.amount_2, 1 do
+            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["3"]}})
+        end
+        for i = 1, card.ability.extra.amount_3, 1 do
+            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["5"]}})
+        end
+        for i = 1, card.ability.extra.amount_4, 1 do
+            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["8"]}})
+        end
+    end,
+}
 --Love Triangle
 local lovetriangle = SMODS.Consumable {
     set = "Packet",
@@ -498,7 +530,7 @@ local alternative = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 1, amount = 3}},
+    config = {extra = {cost = 1, amount = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -506,7 +538,7 @@ local alternative = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {ranks=G.FUNCS.least_popular_rank(),onerank=true})
+        G.FUNCS.packet_effect(card, {ranks=G.FUNCS.not_popular_rank()})
     end,
 }
 --bandwagon
@@ -527,6 +559,26 @@ local bandwagon = SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         G.FUNCS.packet_effect(card, {suits=G.FUNCS.popular_suit(),onesuit=true})
+    end,
+}
+--roadnottaken
+local roadnottaken = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-roadnottaken",
+    key = "roadnottaken",
+    pos = {x = 5, y = 2},
+    atlas = 'packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = 1, amount = 5}},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        G.FUNCS.packet_effect(card, {suits=G.FUNCS.not_popular_suit()})
     end,
 }
 --anything goes
@@ -1018,6 +1070,7 @@ SMODS.ObjectType {
         ["c_draft_capitalinvestment"] = true,
         ["c_draft_fullgambit"] = true,
         ["c_draft_alternative"] = true,
+        ["c_draft_roadnottaken"] = true,
     }
 }
 
@@ -1037,7 +1090,7 @@ SMODS.ObjectType {
         ["c_draft_intherough"] = true,
         ["c_draft_hittheclub"] = true,
         ["c_draft_inspades"] = true,
-        ["c_draft_suitup"] = true,
+        ["c_draft_fibyourwayout"] = true,
     }
 }
 
@@ -1049,6 +1102,7 @@ SMODS.ObjectType {
         ["c_draft_faceoff"] = true,
         ["c_draft_pocketaces"] = true,
         ["c_draft_turkey"] = true,
+        ["c_draft_lovetriangle"] = true,
         ["c_draft_copycat"] = true,
         ["c_draft_bandwagon"] = true,
         ["c_draft_anythinggoes"] = true,
