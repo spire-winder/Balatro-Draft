@@ -47,7 +47,7 @@ local skipcoupon = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
+        G.FUNCS.packet_effect(card, {nocards = true})
     end,
 }
 --slimpickings
