@@ -5,7 +5,7 @@ return {
                 name = "Draft Deck",
                 text = {
                     "Start run with no deck",
-                    "and {C:attention}#1# Draft Tags{}",
+                    "and {C:attention}#1# {C:packet}Draft Tags{}",
                 },
             },
         },
@@ -30,12 +30,52 @@ return {
             },
         },
         Packet = {
+            c_draft_revolution = {
+                name = "Revolution",
+                text = {
+                    "{C:money}#1#{}",
+                    "Destroy {C:attention}#2#{} random {C:attention}face{}",
+                    "cards in your deck",
+                    "{C:green}X#3#{} random cards"
+                },
+            },
+            c_draft_tradesecrets = {
+                name = "Trade Secrets",
+                text = {
+                    "{C:money}#1#{}",
+                    "Destroy {C:attention}#2#{} random cards",
+                    "in your deck",
+                    "{C:green}X#3#{} random cards"
+                },
+            },
             c_draft_turkey = {
                 name = "Turkey",
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
                     "of {C:attention}one{} rank"
+                },
+            },
+            c_draft_abandonallhope = {
+                name = "Abandon All Hope",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random card of",
+                    "each {C:attention}non-face{} rank"
+                },
+            },
+            c_draft_thewholeshebang = {
+                name = "The Whole Shebang",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:attention}Standard Deck{}"
+                },
+            },
+            c_draft_skipcoupon = {
+                name = "Skip Coupon",
+                text = {
+                    "{C:money}#1#{}",
+                    --"{C:green}X#2#{} random cards"
                 },
             },
             c_draft_slimpickings = {
@@ -74,8 +114,8 @@ return {
                     "{C:green}X#2#{} random {C:heart}Hearts{}"
                 },
             },
-            c_draft_intherough = {
-                name = "In the Rough",
+            c_draft_diamondsareforever = {
+                name = "Diamonds are Forever",
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random {C:diamond}Diamonds{}"
@@ -121,8 +161,8 @@ return {
                     "{C:attention}abundant{} suit"
                 },
             },
-            c_draft_fibyourwayout = {
-                name = "Fib Your Way Out",
+            c_draft_perfectcurve = {
+                name = "Perfect Curve",
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random {C:attention}Ace{}",
@@ -130,6 +170,17 @@ return {
                     "{C:green}X#4#{} random {C:attention}3{}",
                     "{C:green}X#5#{} random {C:attention}5{}",
                     "{C:green}X#6#{} random {C:attention}8{}",
+                },
+            },
+            c_draft_notaddingup = {
+                name = "Not Adding Up",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random {C:attention}4{}",
+                    "{C:green}X#3#{} random {C:attention}6{}",
+                    "{C:green}X#4#{} random {C:attention}7{}",
+                    "{C:green}X#5#{} random {C:attention}9{}",
+                    "{C:green}X#6#{} random {C:attention}10{}",
                 },
             },
             c_draft_copycat = {
@@ -150,8 +201,8 @@ return {
                     "{C:attention}abundant{} rank"
                 },
             },
-            c_draft_fullgambit = {
-                name = "Full Gambit",
+            c_draft_stairwaytoheaven = {
+                name = "Stairway to Heaven",
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
@@ -277,7 +328,8 @@ return {
                 name = "Devil's Number",
                 text = {
                     "{C:money}#1#{}",
-                    "{C:green}X#2#{} random {C:attention}Gold 6{}s"
+                    "{C:green}X#2#{} random {C:attention}Gold 6{}",
+                    "{C:green}X#3#{} random {C:attention}6{}s"
                 },
             },
             c_draft_gamblersdream = {
@@ -303,12 +355,20 @@ return {
                     "Create a {C:tarot}Tarot{} card"
                 },
             },
+            c_draft_keepemcoming = {
+                name = "Keep 'Em Coming",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random cards",
+                    "Create a {C:packet}Draft Tag{}"
+                },
+            },
             c_draft_planetaryalignment = {
                 name = "Planetary Alignment",
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
-                    "Create a {C:planet}Planet{} card"
+                    "Create a {C:planet}Minior Tag{}"
                 },
             },
             c_draft_justriffin = {
@@ -317,6 +377,14 @@ return {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
                     "Create a {C:blue}Common{} {C:attention}Joker{}"
+                },
+            },
+            c_draft_menatwork = {
+                name = "Men At Work",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random cards",
+                    "Create a {C:attention}Blueprint{}"
                 },
             },
             c_draft_myprecious = {
@@ -369,8 +437,22 @@ return {
             tag_draft_drafttag = {
                 name = "Draft Tag",
                 text = {
-                    "Immediately open a free",
-                    "{C:attention}Draft Crate{}",
+                    "Immediately open a",
+                    "{C:packet}Draft Crate{}",
+                },
+            },
+            tag_draft_megadrafttag = {
+                name = "Mega Draft Tag",
+                text = {
+                    "Immediately open a",
+                    "{C:packet}Mega Draft Crate{}",
+                },
+            },
+            tag_draft_miniortag = {
+                name = "Minior Tag",
+                text = {
+                    "Gives a free",
+                    "{C:planet}Celestial Pack{}",
                 },
             },
         },
@@ -379,7 +461,15 @@ return {
 				name = "Draft Sleeve",
 				text = {
                     "Start run with no deck",
-                    "and {C:attention}#1# Draft Tags{}"
+                    "and {C:attention}#1#{} {C:packet}Draft Tags{}"
+				},
+			},
+			sleeve_draft_draftsleeve_alt = {
+				name = "Draft Sleeve",
+				text = {
+                    "Start run with",
+                    "{C:attention}#1#{} {C:packet}Mega Draft Tags{}",
+                    "too"
 				},
 			},
         },
@@ -393,6 +483,13 @@ return {
             },
             p_draft_pack_1 = {
                 name = "Draft Crate",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{} Packets"
+                }
+            },
+            p_draft_mega_draft_pack_1 = {
+                name = "Mega Draft Crate",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{} Packets"

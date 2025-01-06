@@ -7,8 +7,8 @@
 	"prefix": "draft",
 	"main_file": "draft.lua",
 	"priority": 0,
-	"badge_colour": "42c8f5",
-	"badge_text_colour": "636363",
+	"badge_colour": "986b41",
+	"badge_text_colour": "d7ba89",
 	"version": "0.1",
 	"dependencies": [
 		"Steamodded (>=1.0.0~ALPHA-1217b)"

@@ -134,6 +134,7 @@ function loc_colour(_c, _default)
 	  G.ARGS.LOC_COLOURS.diamond = G.C.SUITS.Diamonds
 	  G.ARGS.LOC_COLOURS.spade = G.C.SUITS.Spades
 	  G.ARGS.LOC_COLOURS.club = G.C.SUITS.Clubs
+	  G.ARGS.LOC_COLOURS.packet = G.C.SET.Packet
 	  return lc(_c, _default)
 end
 
@@ -306,3 +307,14 @@ G.FUNCS.skip_draft_booster = function(e)
     end
     G.FUNCS.end_consumeable(e)
   end
+
+function G.FUNCS.get_current_deck()
+    if Galdur and Galdur.config.use and Galdur.run_setup.choices.deck then
+        return Galdur.run_setup.choices.deck.effect.center
+    elseif G.GAME.viewed_back then
+        return G.GAME.viewed_back.effect.center
+    elseif G.GAME.selected_back then
+        return G.GAME.selected_back.effect.center
+    end
+    return nil
+end
