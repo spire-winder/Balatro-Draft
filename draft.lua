@@ -76,7 +76,7 @@ if CardSleeves then
 		object_type = "Atlas",
 		key = "sleeve_atlas",
 		path = "sleeves.png",
-		px = 71,
+		px = 73,
 		py = 95,
 	})
 
