@@ -130,16 +130,16 @@ local capitalinvestment = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {})
     end,
 }
---suit up
-local suitup = SMODS.Consumable {
+--pocketaces
+local pocketaces = SMODS.Consumable {
     set = "Packet",
-    name = "draft-suitup",
-    key = "suitup",
-    pos = {x = 5, y = 0},
+    name = "draft-pocketaces",
+    key = "pocketaces",
+    pos = {x = 1, y = 0},
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 5}},
+    config = {extra = {cost = -2, amount = 2}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -147,8 +147,7 @@ local suitup = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        --local _suit = pseudorandom_element(SMODS.Suits, pseudoseed('draft_create'))
-        G.FUNCS.packet_effect(card, {onesuit=true})
+        G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks.Ace}, onerank=true})
     end,
 }
 --hackerman
@@ -228,24 +227,30 @@ local faceoff = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {ranks=faces})
     end,
 }
---pocketaces
-local pocketaces = SMODS.Consumable {
+--Love Triangle
+local lovetriangle = SMODS.Consumable {
     set = "Packet",
-    name = "draft-pocketaces",
-    key = "pocketaces",
-    pos = {x = 1, y = 0},
+    name = "draft-lovetriangle",
+    key = "lovetriangle",
+    pos = {x = 8, y = 2},
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -2, amount = 2}},
+    config = {extra = {cost = -1, amount = 1, amount_1 = 1, amount_2 = 1}},
     loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1, card.ability.extra.amount_1} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks.Ace}, onerank=true})
+        G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks["Jack"]}})
+        for i = 1, card.ability.extra.amount_1, 1 do
+            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["Queen"]}})
+        end
+        for i = 1, card.ability.extra.amount_2, 1 do
+            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["King"]}})
+        end
     end,
 }
 --turkey
@@ -387,32 +392,6 @@ local notaddingup = SMODS.Consumable {
         end
     end,
 }
---Love Triangle
-local lovetriangle = SMODS.Consumable {
-    set = "Packet",
-    name = "draft-lovetriangle",
-    key = "lovetriangle",
-    pos = {x = 8, y = 2},
-    atlas = 'packet_atlas',
-    cost = 0,
-    order = 1,
-    config = {extra = {cost = -1, amount = 1, amount_1 = 1, amount_2 = 1}},
-    loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1, card.ability.extra.amount_1} }
-    end,
-    can_use = function(self, card)
-        return true
-    end,
-    use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks["Jack"]}})
-        for i = 1, card.ability.extra.amount_1, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["Queen"]}})
-        end
-        for i = 1, card.ability.extra.amount_2, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["King"]}})
-        end
-    end,
-}
 --abandonallhope
 local abandonallhope = SMODS.Consumable {
     set = "Packet",
@@ -456,26 +435,6 @@ local straightaway = SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         G.FUNCS.packet_effect(card, {straight=true})
-    end,
-}
---plunger
-local plunger = SMODS.Consumable {
-    set = "Packet",
-    name = "draft-plunger",
-    key = "plunger",
-    pos = {x = 2, y = 1},
-    atlas = 'packet_atlas',
-    cost = 0,
-    order = 1,
-    config = {extra = {cost = 0, amount = 5}},
-    loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
-    end,
-    can_use = function(self, card)
-        return true
-    end,
-    use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {straight=true,onesuit=true})
     end,
 }
 --stairwaytoheaven
@@ -591,6 +550,47 @@ local revolution = SMODS.Consumable {
         end
         return #temp_deck >= self.config.extra.amount_remove
     end
+}
+--suit up
+local suitup = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-suitup",
+    key = "suitup",
+    pos = {x = 5, y = 0},
+    atlas = 'packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = 0, amount = 5}},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        --local _suit = pseudorandom_element(SMODS.Suits, pseudoseed('draft_create'))
+        G.FUNCS.packet_effect(card, {onesuit=true})
+    end,
+}
+--plunger
+local plunger = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-plunger",
+    key = "plunger",
+    pos = {x = 2, y = 1},
+    atlas = 'packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = 0, amount = 5}},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        G.FUNCS.packet_effect(card, {straight=true,onesuit=true})
+    end,
 }
 --Heavy Heart
 local heavyheart = SMODS.Consumable {
@@ -772,27 +772,6 @@ local anythinggoes = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {enhancements=G.P_CENTER_POOLS["Enhanced"]})
     end,
 }
---multiplexer
-local multiplexer = SMODS.Consumable {
-    set = "Packet",
-    name = "draft-multiplexer",
-    key = "multiplexer",
-    pos = {x = 10, y = 0},
-    atlas = 'packet_atlas',
-    cost = 0,
-    order = 1,
-    config = {extra = {cost = -3, amount = 5}},
-    loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS.m_mult
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
-    end,
-    can_use = function(self, card)
-        return true
-    end,
-    use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {enhancements={G.P_CENTERS.m_mult}})
-    end,
-}
 --bonusround
 local bonusround = SMODS.Consumable {
     set = "Packet",
@@ -814,25 +793,25 @@ local bonusround = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {enhancements={G.P_CENTERS.m_bonus}})
     end,
 }
---steelworker
-local steelworker = SMODS.Consumable {
+--multiplexer
+local multiplexer = SMODS.Consumable {
     set = "Packet",
-    name = "draft-steelworker",
-    key = "steelworker",
-    pos = {x = 9, y = 1},
+    name = "draft-multiplexer",
+    key = "multiplexer",
+    pos = {x = 10, y = 0},
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -4, amount = 3}},
+    config = {extra = {cost = -3, amount = 5}},
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue+1] = G.P_CENTERS.m_steel
+        info_queue[#info_queue+1] = G.P_CENTERS.m_mult
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {enhancements={G.P_CENTERS.m_steel}})
+        G.FUNCS.packet_effect(card, {enhancements={G.P_CENTERS.m_mult}})
     end,
 }
 --wildchild
@@ -875,6 +854,27 @@ local fragile = SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         G.FUNCS.packet_effect(card, {enhancements={G.P_CENTERS.m_glass}})
+    end,
+}
+--steelworker
+local steelworker = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-steelworker",
+    key = "steelworker",
+    pos = {x = 9, y = 1},
+    atlas = 'packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = -4, amount = 3}},
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = G.P_CENTERS.m_steel
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        G.FUNCS.packet_effect(card, {enhancements={G.P_CENTERS.m_steel}})
     end,
 }
 --totallybaked
@@ -943,6 +943,34 @@ local gamblersdream = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks["7"]}, onerank=true, enhancements={G.P_CENTERS.m_lucky}})
     end,
 }
+--tarotreading
+local tarotreading = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-tarotreading",
+    key = "tarotreading",
+    pos = {x = 14, y = 1},
+    atlas = 'packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = -2, amount = 5}},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        G.FUNCS.packet_effect(card, {})
+        G.E_MANAGER:add_event(Event({
+            func = function() 
+                if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
+                    local card = create_card('Tarot',G.consumeables, nil, nil, nil, nil, nil, 'ali')
+                    card:add_to_deck()
+                    G.consumeables:emplace(card)
+                end
+                return true end}))
+    end,
+}
 --planetaryalignment
 local planetaryalignment = SMODS.Consumable {
     set = "Packet",
@@ -974,34 +1002,6 @@ local planetaryalignment = SMODS.Consumable {
                 return true end}))]]
     end,
 }
---tarotreading
-local tarotreading = SMODS.Consumable {
-    set = "Packet",
-    name = "draft-tarotreading",
-    key = "tarotreading",
-    pos = {x = 14, y = 1},
-    atlas = 'packet_atlas',
-    cost = 0,
-    order = 1,
-    config = {extra = {cost = -2, amount = 5}},
-    loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
-    end,
-    can_use = function(self, card)
-        return true
-    end,
-    use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
-        G.E_MANAGER:add_event(Event({
-            func = function() 
-                if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
-                    local card = create_card('Tarot',G.consumeables, nil, nil, nil, nil, nil, 'ali')
-                    card:add_to_deck()
-                    G.consumeables:emplace(card)
-                end
-                return true end}))
-    end,
-}
 --spectralforce
 local spectralforce = SMODS.Consumable {
     set = "Packet",
@@ -1028,6 +1028,28 @@ local spectralforce = SMODS.Consumable {
                     G.consumeables:emplace(card)
                 end
                 return true end}))
+    end,
+}
+--keepemcoming
+local keepemcoming = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-keepemcoming",
+    key = "keepemcoming",
+    pos = {x = 10, y = 3},
+    atlas = 'packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = 2, amount = 5}},
+    loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_draft_drafttag" }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        G.FUNCS.packet_effect(card, {})
+        add_tag(Tag('tag_draft_drafttag'))
     end,
 }
 --justriffin
@@ -1062,18 +1084,18 @@ local justriffin = SMODS.Consumable {
         end
     end,
 }
---keepemcoming
-local keepemcoming = SMODS.Consumable {
+--menatwork
+local menatwork = SMODS.Consumable {
     set = "Packet",
-    name = "draft-keepemcoming",
-    key = "keepemcoming",
-    pos = {x = 10, y = 3},
+    name = "draft-menatwork",
+    key = "menatwork",
+    pos = {x = 2, y = 3},
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 2, amount = 5}},
+    config = {extra = {cost = -2, amount = 20}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_draft_drafttag" }
+		info_queue[#info_queue + 1] = { set = "Joker", key = "j_blueprint" }
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
@@ -1081,7 +1103,45 @@ local keepemcoming = SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         G.FUNCS.packet_effect(card, {})
-        add_tag(Tag('tag_draft_drafttag'))
+        if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) then
+            G.GAME.joker_buffer = G.GAME.joker_buffer + 1
+            G.E_MANAGER:add_event(Event({
+                func = function() 
+                    local card = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_blueprint")
+                    card:add_to_deck()
+                    G.jokers:emplace(card)
+                    card:start_materialize()
+                    G.GAME.joker_buffer = 0
+                    return true
+            end}))
+        end
+    end,
+}
+--thewholeshebang
+local thewholeshebang = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-thewholeshebang",
+    key = "thewholeshebang",
+    pos = {x = 3, y = 3},
+    atlas = 'packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = 20, amount = 0, amount_special = 1}},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_special} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        G.FUNCS.packet_effect(card, {})
+        for i = 1, card.ability.extra.amount_special, 1 do
+            for key1, value1 in pairs(SMODS.Suits) do
+                for key2, value2 in pairs(SMODS.Ranks) do
+                    G.FUNCS.create_playing_card_in_deck({ suits={value1}, ranks={value2}})
+                end
+            end
+        end
     end,
 }
 --wheelofdestiny
@@ -1156,66 +1216,6 @@ local wheelofdestiny = SMODS.Consumable {
 				end,
 			}))
             G.FUNCS.packet_effect(card, {})
-        end
-    end,
-}
---thewholeshebang
-local thewholeshebang = SMODS.Consumable {
-    set = "Packet",
-    name = "draft-thewholeshebang",
-    key = "thewholeshebang",
-    pos = {x = 3, y = 3},
-    atlas = 'packet_atlas',
-    cost = 0,
-    order = 1,
-    config = {extra = {cost = 20, amount = 0, amount_special = 1}},
-    loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_special} }
-    end,
-    can_use = function(self, card)
-        return true
-    end,
-    use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
-        for i = 1, card.ability.extra.amount_special, 1 do
-            for key1, value1 in pairs(SMODS.Suits) do
-                for key2, value2 in pairs(SMODS.Ranks) do
-                    G.FUNCS.create_playing_card_in_deck({ suits={value1}, ranks={value2}})
-                end
-            end
-        end
-    end,
-}
---menatwork
-local menatwork = SMODS.Consumable {
-    set = "Packet",
-    name = "draft-menatwork",
-    key = "menatwork",
-    pos = {x = 2, y = 3},
-    atlas = 'packet_atlas',
-    cost = 0,
-    order = 1,
-    config = {extra = {cost = -2, amount = 20}},
-    loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_blueprint" }
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
-    end,
-    can_use = function(self, card)
-        return true
-    end,
-    use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
-        if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) then
-            G.GAME.joker_buffer = G.GAME.joker_buffer + 1
-            G.E_MANAGER:add_event(Event({
-                func = function() 
-                    local card = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_blueprint")
-                    card:add_to_deck()
-                    G.jokers:emplace(card)
-                    card:start_materialize()
-                    G.GAME.joker_buffer = 0
-                    return true
-            end}))
         end
     end,
 }
