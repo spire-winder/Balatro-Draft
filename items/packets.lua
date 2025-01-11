@@ -409,12 +409,27 @@ local abandonallhope = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
+        G.FUNCS.packet_effect(card, {nocards=true})
         for key, value in pairs(SMODS.Ranks) do
+            if not value.face then
+                local possibilities = {}
+                for key, val in pairs(G.P_CARDS) do
+                    if val.value == value.key then
+                        table.insert(possibilities, val)
+                    end
+                end
+                create_playing_card({
+                    front = pseudorandom_element(possibilities, pseudoseed('abandonallhope')),
+                    _center = G.P_CENTERS.c_base
+                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Packet })
+            end
+        end
+        
+        --[[for key, value in pairs(SMODS.Ranks) do
             if not value.face then
                 G.FUNCS.create_playing_card_in_deck({amount = amount_special, ranks={value}})
             end
-        end
+        end]]
     end,
 }
 --straightaway

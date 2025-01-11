@@ -1,5 +1,18 @@
 return {
     descriptions = {
+        Draft_Mode = {
+            draft_mode_casl_none = {
+                name = "Standard Deck",
+                text = { "No drafting." }
+            },
+            draft_draft = {
+                name = "Draft",
+                text = {
+                    "Start run with no deck",
+                    "and {C:attention}#1# {C:packet}Draft Tags{}",
+                },
+            },
+        },
         Back = {
             b_draft_draftdeck = {
                 name = "Draft Deck",
@@ -531,6 +544,13 @@ return {
             k_draft_draft_pack = "Draft Crate",
             k_mtj = "MTJ",
             k_cryptid = "Cryptid",
+            mode_not_found_error = "Mode could not be found! Did you remove its mod?",
+            
+            allow_any_draft_mode_selection = "Unlock all draft modes",
+            allow_any_draft_mode_selection_desc = {
+                "Allows any draft mode to be selected",
+                "in the new run menu, as if unlocked"
+            },
         },
         labels = {
 
