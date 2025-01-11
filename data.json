@@ -3,7 +3,7 @@
 	"name": "Drafting",
 	"display_name": "Drafting",
 	"author": ["spire_winder"],
-	"description": "A Balatro mod that replaces standard deck construction with a draft. Note: currently incompatible with Galdur.",
+	"description": "A Balatro mod that replaces standard deck construction with a draft.",
 	"prefix": "draft",
 	"main_file": "draft.lua",
 	"priority": 0,
