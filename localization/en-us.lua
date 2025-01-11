@@ -1,11 +1,11 @@
 return {
     descriptions = {
         Draft_Mode = {
-            draft_mode_casl_none = {
+            mode_draft_casl_none = {
                 name = "Standard Deck",
                 text = { "No drafting." }
             },
-            draft_draft = {
+            mode_draft_draft = {
                 name = "Draft",
                 text = {
                     "Start run with no deck",

@@ -324,7 +324,7 @@ function G.FUNCS.get_current_deck()
     return nil
 end
 
---[[local function tprint(tbl, max_indent, _indent)
+local function tprint(tbl, max_indent, _indent)
     if type(tbl) ~= "table" then return tostring(tbl) end
 
     max_indent = max_indent or 16
@@ -484,7 +484,7 @@ function G.UIDEF.draft_mode_option(_type)
 end
 
 function G.UIDEF.viewed_draft_mode_option()
-    G.viewed_mode = G.viewed_mode or "draft_mode_casl_none"
+    G.viewed_mode = G.viewed_mode or "mode_draft_casl_none"
 
     return {
         n = G.UIT.ROOT,
@@ -539,7 +539,7 @@ function Game:init_game_object(...)
     elseif is_challenge and Draft.game_args.challenge.draft_mode then
         output.draft_selected_mode = Draft.game_args.challenge.draft_mode
     else
-        output.draft_selected_mode = "draft_mode_casl_none"
+        output.draft_selected_mode = "mode_draft_casl_none"
     end
     return output
 end
@@ -548,7 +548,7 @@ local old_uidef_run_setup_option = G.UIDEF.run_setup_option
 function G.UIDEF.run_setup_option(_type)
     local output = old_uidef_run_setup_option(_type)
     if _type == "Continue" then
-        G.viewed_mode = "draft_mode_casl_none"
+        G.viewed_mode = "mode_draft_casl_none"
         if G.SAVED_GAME ~= nil then
             G.viewed_mode = saved_game.GAME.draft_selected_mode or G.viewed_mode
         end
@@ -563,7 +563,7 @@ function G.UIDEF.run_setup_option(_type)
                 }
             })
     elseif _type == "New Run" then
-        G.viewed_mode = G.PROFILES[G.SETTINGS.profile].MEMORY.draft_mode or G.viewed_mode or "draft_mode_casl_none"
+        G.viewed_mode = G.PROFILES[G.SETTINGS.profile].MEMORY.draft_mode or G.viewed_mode or "mode_draft_casl_none"
         table.insert(output.nodes, 2,
             {
                 n = G.UIT.R,
@@ -590,4 +590,13 @@ SMODS.current_mod.config_tab = function()
             }}
         }}
     }}
-end]]
+end
+
+local old_Back_apply_to_run = Back.apply_to_run
+function Back:apply_to_run(...)
+    local mode_center = Draft.Draft_Mode:get_obj(G.GAME.draft_selected_mode or "mode_draft_casl_none")
+    old_Back_apply_to_run(self, ...)
+    if mode_center.apply then
+        mode_center:apply()
+    end
+end

@@ -59,12 +59,12 @@ assert(SMODS.load_file("items/packs.lua"))()
 -- SLEEVE BASE CLASS & METHODS
 
 Draft.Draft_Mode = SMODS.Center:extend {
-    class_prefix = "draftmode",
+    class_prefix = "mode",
     discovered = false,
     unlocked = true,
     set = "Draft_Mode",
     config = {},
-    required_params = { "key", "atlas", "pos" },
+    required_params = { "key" },
     pre_inject_class = function(self)
         G.P_CENTER_POOLS[self.set] = {}
     end,
@@ -133,8 +133,8 @@ SMODS.Back{
 	end
 }
 
---[[Draft.Draft_Mode {
-    key = "mode_casl_none",
+Draft.Draft_Mode {
+    key = "casl_none",
     name = "Standard Deck",
     atlas = "pack_atlas",
     pos = { x = 4, y = 3 },
@@ -143,7 +143,7 @@ SMODS.Back{
 
 Draft.Draft_Mode({
 	key = "draft",
-	name = "draft-draft",
+	name = "draft-mode-draft",
 	atlas = "pack_atlas",
 	pos = { x = 0, y = 0 },
 	config = { num_packs = 10, dollars = 0 },
@@ -223,4 +223,4 @@ if CardSleeves then
 			end
 		end,
 	})
-end]]
+end
