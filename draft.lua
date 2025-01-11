@@ -27,6 +27,14 @@ SMODS.Atlas {
 
 SMODS.Atlas {
 	object_type = "Atlas",
+	key = "cross_mod_packet_atlas",
+	path = "cross_mod_packets.png",
+	px = 71,
+	py = 95,
+}
+
+SMODS.Atlas {
+	object_type = "Atlas",
 	key = "pack_atlas",
 	path = "packs.png",
 	px = 71,

@@ -68,7 +68,7 @@ return {
                 name = "The Whole Shebang",
                 text = {
                     "{C:money}#1#{}",
-                    "{C:green}X#2#{} {C:attention}Standard Deck{}"
+                    "{C:green}X#2#{} of {C:attention}each{} card"
                 },
             },
             c_draft_skipcoupon = {
@@ -126,6 +126,13 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random {C:club}Clubs{}"
+                },
+            },
+            c_draft_beinclover = {
+                name = "Be in Clover",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random {C:clover}Clovers{}"
                 },
             },
             c_draft_inspades = {
@@ -355,6 +362,22 @@ return {
                     "Create a {C:tarot}Tarot{} card"
                 },
             },
+            c_draft_codemonkey = {
+                name = "Code Monkey",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random cards",
+                    "Create a {C:cry_code}Code{} card"
+                },
+            },
+            c_draft_thegathering = {
+                name = "The Gathering",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random cards",
+                    "Create a {C:magic}Magic{} card"
+                },
+            },
             c_draft_keepemcoming = {
                 name = "Keep 'Em Coming",
                 text = {
@@ -506,6 +529,8 @@ return {
         },
         dictionary = {
             k_draft_draft_pack = "Draft Crate",
+            k_mtj = "MTJ",
+            k_cryptid = "Cryptid",
         },
         labels = {
 

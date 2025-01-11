@@ -136,6 +136,9 @@ function loc_colour(_c, _default)
 	  G.ARGS.LOC_COLOURS.diamond = G.C.SUITS.Diamonds
 	  G.ARGS.LOC_COLOURS.spade = G.C.SUITS.Spades
 	  G.ARGS.LOC_COLOURS.club = G.C.SUITS.Clubs
+      --[[if MagicTheJokering then
+	    G.ARGS.LOC_COLOURS.Magic = G.C.SET.Magic
+      end]]
 	  G.ARGS.LOC_COLOURS.packet = G.C.SET.Packet
 	  return lc(_c, _default)
 end

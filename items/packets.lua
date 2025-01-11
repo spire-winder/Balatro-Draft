@@ -1134,14 +1134,20 @@ local thewholeshebang = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
-        for i = 1, card.ability.extra.amount_special, 1 do
+        G.FUNCS.packet_effect(card, {nocards=true})
+        for key, value in pairs(G.P_CARDS) do
+            create_playing_card({
+                front = value,
+                _center = G.P_CENTERS.c_base
+                }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Packet })
+        end
+        --[[for i = 1, card.ability.extra.amount_special, 1 do
             for key1, value1 in pairs(SMODS.Suits) do
                 for key2, value2 in pairs(SMODS.Ranks) do
                     G.FUNCS.create_playing_card_in_deck({ suits={value1}, ranks={value2}})
                 end
             end
-        end
+        end]]
     end,
 }
 --wheelofdestiny
@@ -1284,7 +1290,7 @@ local chosenone = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
+        G.FUNCS.packet_effect(card, {nocards=true})
         for i = 1, card.ability.extra.amount_special, 1 do
             local _card = G.FUNCS.create_playing_card_in_deck({})
             _card:set_edition(poll_edition("aura", nil, true, true), true)
@@ -1300,7 +1306,7 @@ SMODS.Consumable {
 	pos = { x = 0, y = 3 },
 	soul_pos = { x = 1, y = 3 },
 	hidden = true,
-  cost=7,
+    cost=5,
 	soul_set = "Packet",
 	order = 21,
     config = {extra = {cost = -5, amount = 0, amount_special = 5}},
@@ -1312,7 +1318,7 @@ SMODS.Consumable {
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_special} }
 	end,
 	use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
+        G.FUNCS.packet_effect(card, {nocards=true})
         for i = 1, card.ability.extra.amount_special, 1 do
             local _card = G.FUNCS.create_playing_card_in_deck({})
             _card:set_edition(poll_edition("aura", nil, true, true), true)
@@ -1391,3 +1397,94 @@ SMODS.ObjectType {
         ["c_draft_chosenone"] = true,
     }
 }
+
+if MagicTheJokering then
+    --beinclover
+    local beinclover = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-beinclover",
+        key = "beinclover",
+        pos = {x = 0, y = 0},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = 0, amount = 5}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            G.FUNCS.packet_effect(card, {suits={SMODS.Suits["mtg_Clovers"]}})
+        end,
+        set_badges = function(self, card, badges)
+            badges[#badges+1] = create_badge(localize('k_mtj'), MagicTheJokering.badge_colour, MagicTheJokering.badge_text_colour, 1 )
+        end,
+    }
+    --thegathering
+    local thegathering = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-thegathering",
+        key = "thegathering",
+        pos = {x = 0, y = 1},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = -2, amount = 5}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            G.FUNCS.packet_effect(card, {})
+            G.E_MANAGER:add_event(Event({
+                func = function() 
+                    if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
+                        local card = create_card('Magic',G.consumeables, nil, nil, nil, nil, nil, 'gather')
+                        card:add_to_deck()
+                        G.consumeables:emplace(card)
+                    end
+                    return true end}))
+        end,
+        set_badges = function(self, card, badges)
+            badges[#badges+1] = create_badge(localize('k_mtj'), MagicTheJokering.badge_colour, MagicTheJokering.badge_text_colour, 1 )
+        end,
+    }
+end
+
+if Cryptid then
+    --codemonkey
+    local codemonkey = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-codemonkey",
+        key = "codemonkey",
+        pos = {x = 1, y = 0},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = -2, amount = 5}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            G.FUNCS.packet_effect(card, {})
+            G.E_MANAGER:add_event(Event({
+                func = function() 
+                    if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
+                        local card = create_card('Code',G.consumeables, nil, nil, nil, nil, nil, 'monk')
+                        card:add_to_deck()
+                        G.consumeables:emplace(card)
+                    end
+                    return true end}))
+        end,
+        set_badges = function(self, card, badges)
+            badges[#badges+1] = create_badge(localize('k_cryptid'), HEX('708b91'), G.C.WHITE, 1 )
+        end,
+    }
+end
