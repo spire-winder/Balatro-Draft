@@ -10,7 +10,7 @@ SMODS.Booster {
     order = 1,
     weight = 0.96,
     create_card = function(self, card, i)
-		if i == 1 then
+		if i == 1 and Draft.config.neutral_packet_collation then
         	return create_card("PacketNeutral", G.pack_cards, nil, nil, true, true, nil, "draft_packet")
 		else
         	return create_card("Packet", G.pack_cards, nil, nil, true, true, nil, "draft_packet")
@@ -73,7 +73,7 @@ SMODS.Booster {
     order = 1,
     weight = 0.96,
     create_card = function(self, card, i)
-		if i == 1 then
+		if i == 1 and Draft.config.neutral_packet_collation then
         	return create_card("PacketNeutral", G.pack_cards, nil, nil, true, true, nil, "draft_packet")
 		else
         	return create_card("Packet", G.pack_cards, nil, nil, true, true, nil, "draft_packet")

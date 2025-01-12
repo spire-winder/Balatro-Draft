@@ -528,8 +528,8 @@ return {
                 name = "Diggin' and Drillin'",
                 text = {
                     "{C:money}#1#{}",
-                    "{C:green}X#2#{} {C:heart}Hearts{}",
-                    "{C:green}X#3#{} {C:club}Clubs{}"
+                    "{C:green}X#2#{} {C:diamond}Diamonds{}",
+                    "{C:green}X#3#{} {C:spade}Spades{}"
                 },
             },
             c_draft_facethemusic = {
@@ -607,6 +607,14 @@ return {
                     "Create a {C:tarot}Charm Tag{}"
                 },
             },
+            c_draft_spectralprocession = {
+                name = "Spectral Procession",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards",
+                    "Create a {C:spectral}Ethereal Tag{}"
+                },
+            },
             c_draft_aimforthestars = {
                 name = "Aim for the Stars",
                 text = {
@@ -680,7 +688,7 @@ return {
 				name = "Sealed Sleeve",
 				text = {
                     "Start run with",
-                    "{C:attention}#1#{} {C:parcel}Slim Sealed Tags{}",
+                    "{C:attention}#1#{} {C:parcel}Slim Sealed Tag{}",
                     "too"
 				},
 			},
@@ -744,10 +752,10 @@ return {
             k_cryptid = "Cryptid",
             mode_not_found_error = "Mode could not be found! Did you remove its mod?",
             
-            allow_any_draft_mode_selection = "Unlock all draft modes",
-            allow_any_draft_mode_selection_desc = {
-                "Allows any draft mode to be selected",
-                "in the new run menu, as if unlocked"
+            neutral_packet_collation = "Neutral Packet Collation",
+            neutral_packet_collation_desc = {
+                "Draft Crates will always contain",
+                "at least one neutral Packet"
             },
         },
         labels = {

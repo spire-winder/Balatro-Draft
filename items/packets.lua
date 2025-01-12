@@ -1392,6 +1392,7 @@ SMODS.ObjectType {
 
 if MagicTheJokering then
     --beinclover
+    if MagicTheJokering.config.include_clover_suit then
     local beinclover = SMODS.Consumable {
         set = "Packet",
         name = "draft-beinclover",
@@ -1414,6 +1415,7 @@ if MagicTheJokering then
             badges[#badges+1] = create_badge(localize('k_mtj'), MagicTheJokering.badge_colour, MagicTheJokering.badge_text_colour, 1 )
         end,
     }
+    end
     --thegathering
     local thegathering = SMODS.Consumable {
         set = "Packet",
