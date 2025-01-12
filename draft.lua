@@ -52,7 +52,7 @@ SMODS.Atlas {
 SMODS.Atlas {
 	object_type = "Atlas",
 	key = "deck_atlas",
-	path = "packs.png",
+	path = "decks.png",
 	px = 71,
 	py = 95,
 }
@@ -63,7 +63,7 @@ assert(SMODS.load_file("items/utility.lua"))()
 assert(SMODS.load_file("items/packets.lua"))()
 assert(SMODS.load_file("items/parcels.lua"))()
 assert(SMODS.load_file("items/packs.lua"))()
-assert(SMODS.load_file("items/draft_modes.lua"))()
+--assert(SMODS.load_file("items/draft_modes.lua"))()
 assert(SMODS.load_file("items/ui.lua"))()
 assert(SMODS.load_file("items/decks.lua"))()
 assert(SMODS.load_file("items/sleeves.lua"))()

@@ -212,7 +212,7 @@ function G.UIDEF.draft_mode_description(mode_key, minw)
             },
             {
                 n = G.UIT.R,
-                config = { align = "cm", padding = 0.03, colour = G.C.WHITE, r = 0.1, minh = 1, minw = minw },
+                config = { align = "cm", padding = 0.03, colour = G.C.WHITE, r = 0.1, minh = 0.5, minw = minw },
                 nodes = desc_t
             }
         }
@@ -222,7 +222,7 @@ end
 function G.UIDEF.draft_mode_option(_type)
     local middle = {
         n = G.UIT.R,
-        config = { align = "cm", minh = 1.7, minw = 7.3 },
+        config = { align = "cm", minh = 1.2, minw = 7.3 },
         nodes = {
             { n = G.UIT.O, config = { id = nil, func = 'RUN_SETUP_check_draft_mode2', object = Moveable() } },
         }
@@ -323,7 +323,7 @@ function G.UIDEF.run_setup_option(_type)
         table.insert(output.nodes, 2,
             {
                 n = G.UIT.R,
-                config = { align = "cm", padding = 0.05, minh = 1.65 },
+                config = { align = "cm", padding = 0.05, minh = 1.15 },
                 nodes = {
                     {n=G.UIT.O,
                      config={id = nil, func = 'RUN_SETUP_check_draft_mode', insta_func = true, object = Moveable() }
@@ -335,7 +335,7 @@ function G.UIDEF.run_setup_option(_type)
         table.insert(output.nodes, 2,
             {
                 n = G.UIT.R,
-                config = { align = "cm", minh = 1.65, minw = 6.8 },
+                config = { align = "cm", minh = 1.15, minw = 6.8 },
                 nodes = {
                     {
                         n = G.UIT.O,

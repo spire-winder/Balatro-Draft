@@ -28,6 +28,13 @@ return {
                     "and {C:attention}#1# {C:packet}Draft Tags{}",
                 },
             },
+            b_draft_sealeddeck = {
+                name = "Sealed Deck",
+                text = {
+                    "Start run with no deck",
+                    "and {C:attention}#1# {C:parcel}Sealed Tag{}",
+                },
+            },
         },
         Joker = {
             
@@ -614,6 +621,13 @@ return {
                     "{C:parcel}Sealed Crate{}",
                 },
             },
+            tag_draft_slimsealedtag = {
+                name = "Slim Sealed Tag",
+                text = {
+                    "Immediately open a",
+                    "{C:parcel}Slim Sealed Crate{}",
+                },
+            },
         },
         Sleeve = {
 			sleeve_draft_draftsleeve = {
@@ -628,6 +642,21 @@ return {
 				text = {
                     "Start run with",
                     "{C:attention}#1#{} {C:packet}Mega Draft Tags{}",
+                    "too"
+				},
+			},
+			sleeve_draft_sealedsleeve = {
+				name = "Sealed Sleeve",
+				text = {
+                    "Start run with no deck",
+                    "and {C:attention}#1#{} {C:parcel}Sealed Tags{}"
+				},
+			},
+			sleeve_draft_sealedsleeve_alt = {
+				name = "Sealed Sleeve",
+				text = {
+                    "Start run with",
+                    "{C:attention}#1#{} {C:parcel}Slim Sealed Tags{}",
                     "too"
 				},
 			},
@@ -663,6 +692,13 @@ return {
             },
             p_draft_sealed_pack_1 = {
                 name = "Sealed Crate",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{} {C:parcel}Parcels{}"
+                }
+            },
+            p_draft_slim_sealed_pack_1 = {
+                name = "Slim Sealed Crate",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2#{} {C:parcel}Parcels{}"
