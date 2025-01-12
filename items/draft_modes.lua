@@ -66,7 +66,7 @@ Draft.Draft_Mode({
 	name = "draft-mode-draft",
 	atlas = "pack_atlas",
 	pos = { x = 0, y = 0 },
-	config = { num_packs = 10, dollars = 0 },
+	config = { num_packs = 10 },
 	unlocked = true,
 	loc_vars = function(self)
 		return { key = self.key, vars = { self.config.num_packs } }
@@ -80,6 +80,32 @@ Draft.Draft_Mode({
 				G.GAME.starting_deck_size = #G.playing_cards
 				for i = 1, self.config.num_packs, 1 do
 					add_tag(Tag('tag_draft_drafttag'))
+				end
+				return true
+			end
+		}))
+	end,
+})
+
+Draft.Draft_Mode({
+	key = "sealed",
+	name = "draft-mode-sealed",
+	atlas = "pack_atlas",
+	pos = { x = 0, y = 0 },
+	config = { num_packs = 1 },
+	unlocked = true,
+	loc_vars = function(self)
+		return { key = self.key, vars = { self.config.num_packs } }
+	end,
+	apply = function(self)
+		G.E_MANAGER:add_event(Event({
+			func = function()
+				for i = #G.playing_cards, 1, -1 do
+					G.playing_cards[i]:remove()
+				end
+				G.GAME.starting_deck_size = #G.playing_cards
+				for i = 1, self.config.num_packs, 1 do
+					add_tag(Tag('tag_draft_sealedtag'))
 				end
 				return true
 			end

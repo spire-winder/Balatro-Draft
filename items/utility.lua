@@ -140,6 +140,7 @@ function loc_colour(_c, _default)
 	    G.ARGS.LOC_COLOURS.Magic = G.C.SET.Magic
       end
 	  G.ARGS.LOC_COLOURS.packet = G.C.SET.Packet
+	  G.ARGS.LOC_COLOURS.parcel = G.C.SET.Parcel
 	  return lc(_c, _default)
 end
 

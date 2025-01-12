@@ -12,6 +12,13 @@ return {
                     "and {C:attention}#1# {C:packet}Draft Tags{}",
                 },
             },
+            mode_draft_sealed = {
+                name = "Sealed",
+                text = {
+                    "Start run with no deck",
+                    "and {C:attention}#1# {C:parcel}Sealed Tag{}",
+                },
+            },
         },
         Back = {
             b_draft_draftdeck = {
@@ -268,7 +275,7 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
-                    "with {C:attention}odd{} rank"
+                    "of {C:attention}odd{} rank"
                 },
             },
             c_draft_eventheodds = {
@@ -276,7 +283,7 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
-                    "with {C:attention}even{} rank"
+                    "of {C:attention}even{} rank"
                 },
             },
             c_draft_hackerman = {
@@ -284,7 +291,7 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
-                    "with rank {C:attention}2{}, {C:attention}3{}, {C:attention}4{}, or {C:attention}5{}"
+                    "of rank {C:attention}2{}, {C:attention}3{}, {C:attention}4{}, or {C:attention}5{}"
                 },
             },
             c_draft_pocketaces = {
@@ -299,7 +306,7 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random cards",
-                    "with rank {C:attention}6{}, {C:attention}7{}, {C:attention}8{}, {C:attention}9{}, or {C:attention}10{}"
+                    "of rank {C:attention}6{}, {C:attention}7{}, {C:attention}8{}, {C:attention}9{}, or {C:attention}10{}"
                 },
             },
             c_draft_steelworker = {
@@ -469,6 +476,115 @@ return {
                 },
             },
         },
+        Parcel = {
+            c_draft_thedarkside = {
+                name = "The Dark Side",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:club}Clubs{}",
+                    "{C:green}X#3#{} {C:spade}Spades{}",
+                },
+            },
+            c_draft_betterredthandead = {
+                name = "Better Red Than Dead",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:heart}Hearts{}",
+                    "{C:green}X#3#{} {C:diamond}Diamonds{}"
+                },
+            },
+            c_draft_checkered = {
+                name = "Checkered",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:heart}Hearts{}",
+                    "{C:green}X#3#{} {C:spade}Spades{}"
+                },
+            },
+            c_draft_chessboard = {
+                name = "Chessboard",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:diamond}Diamonds{}",
+                    "{C:green}X#3#{} {C:clubs}Clubs{}"
+                },
+            },
+            c_draft_bloodandiron = {
+                name = "Blood and Iron",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:heart}Hearts{}",
+                    "{C:green}X#3#{} {C:club}Clubs{}"
+                },
+            },
+            c_draft_digginanddrillin = {
+                name = "Diggin' and Drillin'",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:heart}Hearts{}",
+                    "{C:green}X#3#{} {C:club}Clubs{}"
+                },
+            },
+            c_draft_facethemusic = {
+                name = "Face the Music",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:attention}face{} cards",
+                    "{C:green}X#3#{} cards with",
+                    "{C:red}no{} {C:attention}Aces{}"
+                },
+            },
+            c_draft_hackstarterpack = {
+                name = "Hack Starter Pack",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards of",
+                    "rank {C:attention}2{}, {C:attention}3{}, {C:attention}4{}, or {C:attention}5{} ",
+                    "{C:green}X#3#{} other cards",
+                    "Create a {C:attention}Hack{}"
+                },
+            },
+            c_draft_allalone = {
+                name = "All Alone",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards with",
+                    "{C:red}no{} {C:attention}face{} cards"
+                },
+            },
+            c_draft_investinyourself = {
+                name = "Invest in Yourself",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards",
+                    "Create an {C:attention}Investment Tag{}"
+                },
+            },
+            c_draft_overdraft = {
+                name = "Overdraft",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards",
+                    "Create an {C:packet}Draft Tag{}"
+                },
+            },
+            c_draft_yourreadingis = {
+                name = "Your Reading Is...",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards",
+                    "Create a {C:tarot}Charm Tag{}"
+                },
+            },
+            c_draft_aimforthestars = {
+                name = "Aim for the Stars",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards",
+                    "Create a {C:planet}Meteor Tag{}"
+                },
+            },
+        },
         Tag = {
             tag_draft_drafttag = {
                 name = "Draft Tag",
@@ -489,6 +605,13 @@ return {
                 text = {
                     "Gives a free",
                     "{C:planet}Celestial Pack{}",
+                },
+            },
+            tag_draft_sealedtag = {
+                name = "Sealed Tag",
+                text = {
+                    "Immediately open a",
+                    "{C:parcel}Sealed Crate{}",
                 },
             },
         },
@@ -514,23 +637,37 @@ return {
                 name = "Draft Crate",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{} Packets"
+                    "{C:attention}#2#{} {C:packet}Packets{}"
                 }
             },
             p_draft_pack_1 = {
                 name = "Draft Crate",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{} Packets"
+                    "{C:attention}#2#{} {C:packet}Packets{}"
                 }
             },
             p_draft_mega_draft_pack_1 = {
                 name = "Mega Draft Crate",
                 text = {
                     "Choose {C:attention}#1#{} of up to",
-                    "{C:attention}#2#{} Packets"
+                    "{C:attention}#2#{} {C:packet}Packets{}"
                 }
             },
+            p_draft_sealed_pack = {
+                name = "Sealed Crate",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{} {C:parcel}Parcels{}"
+                }
+            },
+            p_draft_sealed_pack_1 = {
+                name = "Sealed Crate",
+                text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{} {C:parcel}Parcels{}"
+                }
+            }
         }
     },
     misc = {
@@ -542,6 +679,7 @@ return {
         },
         dictionary = {
             k_draft_draft_pack = "Draft Crate",
+            k_draft_sealed_pack = "Sealed Crate",
             k_mtj = "MTJ",
             k_cryptid = "Cryptid",
             mode_not_found_error = "Mode could not be found! Did you remove its mod?",
