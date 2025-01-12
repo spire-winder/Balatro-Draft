@@ -2,7 +2,7 @@ SMODS.Back{
 	name = "draft-draftdeck",
 	key = "draftdeck",
 	pos = {x = 0, y = 0},
-	config = { num_packs = 10, dollars = 0},
+	config = { num_packs = 10},
 	atlas = "deck_atlas",
 	loc_vars = function(self)
 		return { vars = { self.config.num_packs } }
