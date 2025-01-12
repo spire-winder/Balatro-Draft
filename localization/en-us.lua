@@ -541,6 +541,22 @@ return {
                     "{C:red}no{} {C:attention}Aces{}"
                 },
             },
+            c_draft_havealltheaces = {
+                name = "Have All the Aces",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:attention}Aces{}",
+                    "{C:green}X#3#{} other cards"
+                },
+            },
+            c_draft_highvaluegoods = {
+                name = "High Value Goods",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:attention}Enhanced{} cards",
+                    "{C:green}X#3#{} other cards"
+                },
+            },
             c_draft_hackstarterpack = {
                 name = "Hack Starter Pack",
                 text = {
@@ -549,6 +565,14 @@ return {
                     "rank {C:attention}2{}, {C:attention}3{}, {C:attention}4{}, or {C:attention}5{} ",
                     "{C:green}X#3#{} other cards",
                     "Create a {C:attention}Hack{}"
+                },
+            },
+            c_draft_bananasmuggler = {
+                name = "Banana Smuggler",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards",
+                    "Create a {C:attention}Gros Michel{}"
                 },
             },
             c_draft_allalone = {
@@ -564,7 +588,7 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
-                    "Create an {C:attention}Investment Tag{}"
+                    "Create an {C:green}Investment Tag{}"
                 },
             },
             c_draft_overdraft = {

@@ -137,6 +137,9 @@ function loc_colour(_c, _default)
 	  G.ARGS.LOC_COLOURS.spade = G.C.SUITS.Spades
 	  G.ARGS.LOC_COLOURS.club = G.C.SUITS.Clubs
       if MagicTheJokering then
+        if MagicTheJokering.config.include_clover_suit then
+            G.ARGS.LOC_COLOURS.clover = G.C.SUITS[suit_clovers.key]
+        end
 	    G.ARGS.LOC_COLOURS.Magic = G.C.SET.Magic
       end
 	  G.ARGS.LOC_COLOURS.packet = G.C.SET.Packet
