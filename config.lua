@@ -1,3 +1,3 @@
 return {
-    allow_any_draft_mode_selection = true
+    neutral_packet_collation = true
 }

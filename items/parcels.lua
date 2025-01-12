@@ -299,7 +299,7 @@ local havealltheaces = SMODS.Consumable {
     set = "Parcel",
     name = "draft-havealltheaces",
     key = "havealltheaces",
-    pos = {x = 9, y = 0},
+    pos = {x = 10, y = 0},
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
@@ -452,14 +452,14 @@ local yourreadingis = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, num = 2, tarots = 2}},
+    config = {extra = {cost = 0, amount = 0, num = 2}},
     loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_charm" }
         card.ability.extra.amount = 0
         for key, value in pairs(SMODS.Ranks) do
             card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.num
         end
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.tarots} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
         return true
@@ -523,6 +523,47 @@ local aimforthestars = SMODS.Consumable {
         end
         G.FUNCS.packet_effect(card, {nocards=true})
         add_tag(Tag("tag_meteor"))
+    end,
+}
+--spectral Procession
+local spectralprocession = SMODS.Consumable {
+    set = "Parcel",
+    name = "draft-spectralprocession",
+    key = "spectralprocession",
+    pos = {x = 5, y = 1},
+    atlas = 'parcel_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = 0, amount = 0, num = 2}},
+    loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_ethereal" }
+        card.ability.extra.amount = 0
+        for key, value in pairs(SMODS.Ranks) do
+            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.num
+        end
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+    end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        for key, value in pairs(SMODS.Ranks) do
+            local possibilities = {}
+            for key, val in pairs(G.P_CARDS) do
+                if val.value == value.key then
+                    table.insert(possibilities, val)
+                end
+            end
+            pseudoshuffle(possibilities, pseudoseed('draft_spectralprocession'))
+            for i = 1, card.ability.extra.num, 1 do
+                create_playing_card({
+                    front = possibilities[i],
+                    _center = G.P_CENTERS.c_base
+                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
+            end
+        end
+        G.FUNCS.packet_effect(card, {nocards=true})
+        add_tag(Tag("tag_ethereal"))
     end,
 }
 --investinyourself
@@ -690,7 +731,7 @@ local bananasmuggler = SMODS.Consumable {
     set = "Parcel",
     name = "draft-bananasmuggler",
     key = "bananasmuggler",
-    pos = {x = 9, y = 0},
+    pos = {x = 11, y = 0},
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
