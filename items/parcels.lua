@@ -671,7 +671,7 @@ local hackstarterpack = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = 0, amount = 0, num_hack = 3, num_rest = 2}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_hack" }
+		info_queue[#info_queue + 1] = { set = "Joker", key = "j_hack", specific_vars = {} }
 		local amount_hack = 0
         local amount_else = 0
         for key, value in pairs(SMODS.Ranks) do
@@ -683,6 +683,7 @@ local hackstarterpack = SMODS.Consumable {
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), amount_hack, amount_else} }
     end,
+	in_pool = function(self, args) return G.P_CENTERS.j_hack.unlocked end,
     can_use = function(self, card)
         return true
     end,
@@ -744,6 +745,7 @@ local bananasmuggler = SMODS.Consumable {
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
+	in_pool = function(self, args) return G.P_CENTERS.j_gros_michel.unlocked end,
     can_use = function(self, card)
         return true
     end,

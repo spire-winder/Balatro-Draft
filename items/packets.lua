@@ -1095,9 +1095,10 @@ local menatwork = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = -2, amount = 20}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_blueprint" }
+        info_queue[#info_queue + 1] = { set = "Joker", key = "j_blueprint", specific_vars = {}  }
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
+	in_pool = function(self, args) return G.P_CENTERS.j_blueprint.unlocked end,
     can_use = function(self, card)
         return true
     end,
