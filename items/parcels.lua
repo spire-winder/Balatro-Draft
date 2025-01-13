@@ -683,6 +683,7 @@ local hackstarterpack = SMODS.Consumable {
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), amount_hack, amount_else} }
     end,
+	in_pool = function(self, args) return G.P_CENTERS.j_hack.unlocked end,
     can_use = function(self, card)
         return true
     end,
@@ -744,6 +745,7 @@ local bananasmuggler = SMODS.Consumable {
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
+	in_pool = function(self, args) return G.P_CENTERS.j_gros_michel.unlocked end,
     can_use = function(self, card)
         return true
     end,
