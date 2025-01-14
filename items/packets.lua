@@ -556,7 +556,6 @@ local suitup = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        --local _suit = pseudorandom_element(SMODS.Suits, pseudoseed('draft_create'))
         G.FUNCS.packet_effect(card, {onesuit=true})
     end,
 }
@@ -1116,7 +1115,7 @@ local thewholeshebang = SMODS.Consumable {
     use = function(self, card, area, copier)
         local cards = {}
         local suitset = {}
-        for key, value in pairs(SMODS.Suits) do
+        for key, value in pairs(G.FUNCS.not_hidden_suits()) do
             suitset[value.key] = true
         end
         for key, value in pairs(G.P_CARDS) do
@@ -1312,7 +1311,7 @@ SMODS.Consumable {
 	end,
 }
 
-SMODS.ObjectType {
+local PacketPositive = SMODS.ObjectType {
     key="PacketPositive",
     default = "c_draft_loan",
     cards={
@@ -1329,7 +1328,7 @@ SMODS.ObjectType {
     }
 }
 
-SMODS.ObjectType {
+local PacketNeutral = SMODS.ObjectType {
     key="PacketNeutral",
     default = "c_draft_olreliable",
     cards={
@@ -1347,10 +1346,12 @@ SMODS.ObjectType {
         ["c_draft_inspades"] = true,
         ["c_draft_perfectcurve"] = true,
         ["c_draft_notaddingup"] = true,
+        ["c_draft_beinclover"] = true,
+        ["c_draft_rainbow"] = true,
     }
 }
 
-SMODS.ObjectType {
+local PacketNegative = SMODS.ObjectType {
     key="PacketNegative",
     default = "c_draft_skipcoupon",
     cards={
@@ -1380,6 +1381,12 @@ SMODS.ObjectType {
         ["c_draft_myprecious"] = true,
         ["c_draft_sealthedeal"] = true,
         ["c_draft_chosenone"] = true,
+        ["c_draft_thegathering"] = true,
+        ["c_draft_codemonkey"] = true,
+        ["c_draft_polytheism"] = true,
+        ["c_draft_bridgethegap"] = true,
+        ["c_draft_fleuronfighters"] = true,
+        ["c_draft_halberdsninek"] = true,
     }
 }
 
@@ -1472,6 +1479,135 @@ if Cryptid then
         end,
         set_badges = function(self, card, badges)
             badges[#badges+1] = create_badge(localize('k_cryptid'), HEX('708b91'), G.C.WHITE, 1 )
+        end,
+    }
+end
+
+if BUNCOMOD then
+    --fleuronfighters
+    local fleuronfighters = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-fleuronfighters",
+        key = "fleuronfighters",
+        pos = {x = 2, y = 0},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = -1, amount = 3}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            enable_exotics()
+            G.FUNCS.packet_effect(card, {suits={SMODS.Suits["bunc_Fleurons"]}})
+        end,
+        set_badges = function(self, card, badges)
+            badges[#badges+1] = create_badge(localize('k_bunco'), HEX('666665'), G.C.WHITE, 1 )
+        end,
+    }
+    --halberdsninek
+    local halberdsninek = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-halberdsninek",
+        key = "halberdsninek",
+        pos = {x = 2, y = 1},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = -1, amount = 3}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            enable_exotics()
+            G.FUNCS.packet_effect(card, {suits={SMODS.Suits["bunc_Halberds"]}})
+        end,
+        set_badges = function(self, card, badges)
+            badges[#badges+1] = create_badge(localize('k_bunco'), HEX('666665'), G.C.WHITE, 1 )
+        end,
+    }
+    --rainbow
+    local rainbow = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-rainbow",
+        key = "rainbow",
+        pos = {x = 2, y = 2},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = 0, amount = 5}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            enable_exotics()
+            G.FUNCS.packet_effect(card, {one_per_suit=true,allow_hidden=true})
+        end,
+        set_badges = function(self, card, badges)
+            badges[#badges+1] = create_badge(localize('k_bunco'), HEX('666665'), G.C.WHITE, 1 )
+        end,
+    }
+    --polytheism
+    local polytheism = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-polytheism",
+        key = "polytheism",
+        pos = {x = 2, y = 3},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = -2, amount = 5}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            G.FUNCS.packet_effect(card, {})
+            G.E_MANAGER:add_event(Event({
+                func = function() 
+                    if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
+                        local card = create_card('Polymino',G.consumeables, nil, nil, nil, nil, nil, 'gather')
+                        card:add_to_deck()
+                        G.consumeables:emplace(card)
+                    end
+                    return true end}))
+        end,
+        set_badges = function(self, card, badges)
+            badges[#badges+1] = create_badge(localize('k_bunco'), HEX('666665'), G.C.WHITE, 1 )
+        end,
+    }
+    --bridgethegap
+    local bridgethegap = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-bridgethegap",
+        key = "bridgethegap",
+        pos = {x = 2, y = 4},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = -2, amount = 4}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            G.FUNCS.packet_effect(card, {link=true})
+        end,
+        set_badges = function(self, card, badges)
+            badges[#badges+1] = create_badge(localize('k_bunco'), HEX('666665'), G.C.WHITE, 1 )
         end,
     }
 end
