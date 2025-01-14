@@ -3,7 +3,7 @@
 	"name": "Drafting",
 	"display_name": "Drafting",
 	"author": ["spire_winder"],
-	"description": "A Balatro mod that replaces standard deck construction with a draft.",
+	"description": "A Balatro mod that adds decks that replace standard deck construction.",
 	"prefix": "draft",
 	"main_file": "draft.lua",
 	"priority": 100000,
