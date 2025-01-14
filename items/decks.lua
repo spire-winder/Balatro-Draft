@@ -5,7 +5,7 @@ SMODS.Back{
 	config = { num_packs = 10},
 	atlas = "deck_atlas",
 	loc_vars = function(self)
-		return { vars = { self.config.num_packs } }
+		return { vars = { self.config.num_packs }}
 	end,
 	apply = function(self)
 		G.E_MANAGER:add_event(Event({

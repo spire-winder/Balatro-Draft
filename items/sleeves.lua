@@ -12,7 +12,7 @@ if CardSleeves then
 		name = "draft-draftsleeve",
 		atlas = "draft_sleeve_atlas",
 		pos = { x = 0, y = 0 },
-		config = { num_packs = 10, dollars = 0 },
+		config = { num_packs = 10},
 		unlocked = true,
 		unlock_condition = { deck = "Draft Deck", stake = 1 },
 		loc_vars = function(self)
