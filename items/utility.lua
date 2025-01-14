@@ -291,6 +291,8 @@ G.FUNCS.create_playing_cards_in_deck_balanced = function(t)
                 local center
                 if t.enhancements then
                     center = pseudorandom_element(t.enhancements, pseudoseed('draft_enhancement'))
+                elseif t.special_enhancements and special_rankset[value] ~= nil then
+                    center = pseudorandom_element(t.special_enhancements, pseudoseed('draft_enhancement'))
                 else
                     center = G.P_CENTERS.c_base
                 end

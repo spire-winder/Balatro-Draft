@@ -603,12 +603,63 @@ return {
                     "Create a {C:attention}Hack{}"
                 },
             },
-            c_draft_bananasmuggler = {
-                name = "Banana Smuggler",
+            c_draft_thefutureismeow = {
+                name = "The Future is Meow",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:attention}lucky 7{}s",
+                    "{C:green}X#3#{} other cards",
+                    "Create a {C:attention}Lucky Cat{}"
+                },
+            },
+            c_draft_psychichex = {
+                name = "Psychic Hex",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:attention}Enhanced 6{}s",
+                    "{C:green}X#3#{} other cards",
+                    "Create a {C:attention}Sixth Sense{}"
+                },
+            },
+            c_draft_whoyougonnacall = {
+                name = "Who You Gonna Call",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:attention}4{}s and {C:attention}10{}s",
+                    "{C:green}X#3#{} other cards",
+                    "Create a {C:attention}Walkie Talkie{}"
+                },
+            },
+            c_draft_stowaway = {
+                name = "Stowaway",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards",
+                    "Create a {C:attention}Riff-Raff{}"
+                },
+            },
+            c_draft_illicitshipment = {
+                name = "Illicit Shipment",
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create a {C:attention}Gros Michel{}"
+                },
+            },
+            c_draft_exoticshipment = {
+                name = "Exotic Shipment",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} {C:bunco_exotic}Exotic{} cards",
+                    "{C:green}X#2#{} other cards"
+                },
+            },
+            c_draft_polymerchains = {
+                name = "Polymer Chains",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{}  cards",
+                    "Create a {C:bunco_virtual_dark}Arcade Tag{}"
                 },
             },
             c_draft_allalone = {
