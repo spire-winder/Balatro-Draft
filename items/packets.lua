@@ -1114,12 +1114,21 @@ local thewholeshebang = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
+        local cards = {}
+        local suitset = {}
+        for key, value in pairs(SMODS.Suits) do
+            suitset[value.key] = true
+        end
         for key, value in pairs(G.P_CARDS) do
+            if suitset[value.suit] ~= nil then
             create_playing_card({
                 front = value,
-                _center = G.P_CENTERS.c_base
+                center = G.P_CENTERS.c_base
                 }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Packet })
+            end
+            cards[#cards + 1] = true
         end
+        playing_card_joker_effects(cards)
         G.FUNCS.packet_effect(card, {nocards=true})
     end,
 }
