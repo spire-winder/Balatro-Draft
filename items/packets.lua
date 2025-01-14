@@ -1308,7 +1308,11 @@ SMODS.Consumable {
 		return true
 	end,
 	loc_vars = function(self, info_queue, card)
+        --if card then
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_special} }
+        --else
+        --    return { vars = {G.FUNCS.format_cost(self.config.extra.cost), self.config.extra.amount_special} }
+        --end
 	end,
 	use = function(self, card, area, copier)
         for i = 1, card.ability.extra.amount_special, 1 do

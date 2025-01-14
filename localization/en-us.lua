@@ -25,14 +25,14 @@ return {
                 name = "Draft Deck",
                 text = {
                     "Start run with no deck",
-                    "and {C:attention}#1# {C:packet}Draft Tags{}",
+                    "and {C:attention}#1# {C:packet,T:tag_draft_drafttag}Draft Tags{}",
                 },
             },
             b_draft_sealeddeck = {
                 name = "Sealed Deck",
                 text = {
                     "Start run with no deck",
-                    "and {C:attention}#1# {C:parcel}Sealed Tag{}",
+                    "and {C:attention}#1# {C:parcel,T:tag_draft_sealedtag}Sealed Tag{}",
                 },
             },
         },
@@ -666,14 +666,14 @@ return {
 				name = "Draft Sleeve",
 				text = {
                     "Start run with no deck",
-                    "and {C:attention}#1#{} {C:packet}Draft Tags{}"
+                    "and {C:attention}#1#{} {C:packet,T:tag_draft_drafttag}Draft Tags{}"
 				},
 			},
 			sleeve_draft_draftsleeve_alt = {
 				name = "Draft Sleeve",
 				text = {
                     "Start run with",
-                    "{C:attention}#1#{} {C:packet}Mega Draft Tags{}",
+                    "{C:attention}#1#{} {C:packet,T:tag_draft_megadrafttag}Mega Draft Tags{}",
                     "too"
 				},
 			},
@@ -681,14 +681,14 @@ return {
 				name = "Sealed Sleeve",
 				text = {
                     "Start run with no deck",
-                    "and {C:attention}#1#{} {C:parcel}Sealed Tags{}"
+                    "and {C:attention}#1#{} {C:parcel,T:tag_draft_sealedtag}Sealed Tags{}"
 				},
 			},
 			sleeve_draft_sealedsleeve_alt = {
 				name = "Sealed Sleeve",
 				text = {
                     "Start run with",
-                    "{C:attention}#1#{} {C:parcel}Slim Sealed Tag{}",
+                    "{C:attention}#1#{} {C:parcel,T:tag_draft_slimsealedtag}Slim Sealed Tag{}",
                     "too"
 				},
 			},
