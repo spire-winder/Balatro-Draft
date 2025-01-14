@@ -162,6 +162,20 @@ return {
                     "{C:green}X#2#{} random {C:clover}Clovers{}"
                 },
             },
+            c_draft_fleuronfighters = {
+                name = "Fleuron Fighters",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random {C:bunc_fleurons}Fleurons{}"
+                },
+            },
+            c_draft_halberdsninek = {
+                name = "Halberds 9000",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random {C:bunc_halberds}Halberds{}"
+                },
+            },
             c_draft_inspades = {
                 name = "In Spades",
                 text = {
@@ -404,6 +418,14 @@ return {
                     "Create a {C:magic}Magic{} card"
                 },
             },
+            c_draft_polytheism = {
+                name = "Polytheism",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random cards",
+                    "Create a {C:bunco_virtual_dark}Polymino{} card"
+                },
+            },
             c_draft_keepemcoming = {
                 name = "Keep 'Em Coming",
                 text = {
@@ -479,6 +501,21 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random {C:attention}Enhanced{} cards"
+                },
+            },
+            c_draft_bridgethegap = {
+                name = "Bridge the Gap",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random {C:attention}linked{} cards"
+                },
+            },
+            c_draft_rainbow = {
+                name = "Rainbow",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} random cards",
+                    "of {C:attention}different{} suits"
                 },
             },
         },
@@ -749,6 +786,7 @@ return {
             k_draft_sealed_pack = "Sealed Crate",
             k_mtj = "MTJ",
             k_cryptid = "Cryptid",
+            k_bunco = "Bunco",
             mode_not_found_error = "Mode could not be found! Did you remove its mod?",
             
             neutral_packet_collation = "Neutral Packet Collation",

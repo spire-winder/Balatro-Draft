@@ -180,6 +180,7 @@ G.FUNCS.create_playing_cards_in_deck_alt = function(t)
     if t.onesuit then t.suits = compact(t.suits) end
     if t.onerank then t.ranks = compact(t.ranks) end
     local cards = {}
+    local actual_cards = {}
     local suitset = {}
     local rankset = {}
     for key, value in pairs(t.suits) do
@@ -204,17 +205,20 @@ G.FUNCS.create_playing_cards_in_deck_alt = function(t)
             else
                 center = G.P_CENTERS.c_base
             end
-            create_playing_card({
+            if t.one_per_suit then
+                suitset[front.suit] = nil
+            end
+            current_amount = current_amount + 1
+            actual_cards[current_amount] = create_playing_card({
             front = front,
             center = center
             }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Packet })
-            current_amount = current_amount + 1
+            cards[current_amount] = true
         end
-        cards[i] = true
         i = i + 1
     end
     playing_card_joker_effects(cards)
-    return cards
+    return actual_cards
 end
 
 G.FUNCS.create_playing_cards_in_deck_balanced = function(t)
@@ -229,6 +233,7 @@ G.FUNCS.create_playing_cards_in_deck_balanced = function(t)
     if not t.ranks then t.ranks = SMODS.Ranks end
     if t.onesuit then t.suits = compact(t.suits) end
     if t.onerank then t.ranks = compact(t.ranks) end
+    local actual_cards = {}
     local cards = {}
     local suitset = {}
     for key, value in pairs(t.suits) do
@@ -289,18 +294,21 @@ G.FUNCS.create_playing_cards_in_deck_balanced = function(t)
                 else
                     center = G.P_CENTERS.c_base
                 end
-                create_playing_card({
+                if t.one_per_suit then
+                    suitset[front.suit] = nil
+                end
+                current_amount = current_amount + 1
+                actual_cards[current_amount] = create_playing_card({
                 front = front,
                 center = center
                 }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-                current_amount = current_amount + 1
+                cards[current_amount] = true
             end
-            cards[i] = true
             i = i + 1
         end
     end
     playing_card_joker_effects(cards)
-    return cards
+    return actual_cards
 end
 
 G.FUNCS.create_playing_cards_in_deck_straight = function(t)
@@ -308,6 +316,7 @@ G.FUNCS.create_playing_cards_in_deck_straight = function(t)
     if not t.suits then t.suits = SMODS.Suits end
     if not t.ranks then t.ranks = SMODS.Ranks end
     if t.onesuit then t.suits = compact(t.suits) end
+    local actual_cards = {}
     local cards = {}
     local suitset = {}
     local current_rank
@@ -343,21 +352,25 @@ G.FUNCS.create_playing_cards_in_deck_straight = function(t)
                 else
                     center = G.P_CENTERS.c_base
                 end
-                create_playing_card({
+                if t.one_per_suit then
+                    suitset[front.suit] = nil
+                end
+                current_amount = current_amount + 1
+                actual_cards[current_amount] = create_playing_card({
                     front = front,
                     center = center
                 }, G.deck, nil, j ~= 1, { G.C.SECONDARY_SET.Packet })
-                current_amount = current_amount + 1
+                cards[current_amount] = true
             end
             j = j + 1
         end
-        cards[i] = true
     end
     playing_card_joker_effects(cards)
-    return cards
+    return actual_cards
 end
 
 G.FUNCS.packet_effect = function(card, t)
+    local created_cards
     G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
         play_sound('timpani')
         card:juice_up(0.3, 0.5)
@@ -368,11 +381,14 @@ G.FUNCS.packet_effect = function(card, t)
             t.amount = card.ability.extra.amount
             if t.straight then
                 t.base_amount = card.ability.extra.amount
-                G.FUNCS.create_playing_cards_in_deck_straight(t)
+                created_cards = G.FUNCS.create_playing_cards_in_deck_straight(t)
             elseif t.balanced then
-                G.FUNCS.create_playing_cards_in_deck_balanced(t)
+                created_cards = G.FUNCS.create_playing_cards_in_deck_balanced(t)
             else
-                G.FUNCS.create_playing_cards_in_deck_alt(t)
+                created_cards = G.FUNCS.create_playing_cards_in_deck_alt(t)
+            end
+            if t.link then
+                link_cards(created_cards, card.key)
             end
         end
         if G.STATE == G.STATES.SMODS_BOOSTER_OPENED then
@@ -409,12 +425,12 @@ function loc_colour(_c, _default)
 	  G.ARGS.LOC_COLOURS.diamond = G.C.SUITS.Diamonds
 	  G.ARGS.LOC_COLOURS.spade = G.C.SUITS.Spades
 	  G.ARGS.LOC_COLOURS.club = G.C.SUITS.Clubs
-      if MagicTheJokering then
+      --[[if MagicTheJokering then
         if MagicTheJokering.config.include_clover_suit then
             G.ARGS.LOC_COLOURS.clover = G.C.SUITS[suit_clovers.key]
         end
 	    G.ARGS.LOC_COLOURS.Magic = G.C.SET.Magic
-      end
+      end]]
 	  G.ARGS.LOC_COLOURS.packet = G.C.SET.Packet
 	  G.ARGS.LOC_COLOURS.parcel = G.C.SET.Parcel
 	  return lc(_c, _default)
