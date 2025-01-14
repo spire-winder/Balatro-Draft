@@ -18,7 +18,7 @@ SMODS.Booster {
     end,
     ease_background_colour = function(self)
         ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Packet)
-        ease_background_colour({ new_colour = G.C.SET.Packet, special_colour = G.C.BLACK, contrast = 2 })
+        ease_background_colour({ new_colour = G.C.BLACK, special_colour = G.C.SET.Packet, contrast = 2 })
     end,
     loc_vars = function(self, info_queue, card)
         return { vars = { card.config.center.config.choose, card.ability.extra } }
@@ -81,7 +81,7 @@ SMODS.Booster {
     end,
     ease_background_colour = function(self)
         ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Packet)
-        ease_background_colour({ new_colour = G.C.SET.Packet, special_colour = G.C.WHITE, contrast = 2 })
+        ease_background_colour({ new_colour = G.C.BLACK, special_colour = G.C.SET.Packet, contrast = 2 })
     end,
     loc_vars = function(self, info_queue, card)
         return { vars = { card.config.center.config.choose, card.ability.extra } }
@@ -140,7 +140,7 @@ SMODS.Booster {
     end,
     ease_background_colour = function(self)
         ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Parcel)
-        ease_background_colour({ new_colour = G.C.SET.Parcel, special_colour = G.C.WHITE, contrast = 2 })
+        ease_background_colour({ new_colour = G.C.WHITE, special_colour = G.C.SET.Parcel, contrast = 2 })
     end,
     loc_vars = function(self, info_queue, card)
         return { vars = { card.config.center.config.choose, card.ability.extra } }
@@ -195,7 +195,7 @@ SMODS.Booster {
     end,
     ease_background_colour = function(self)
         ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Parcel)
-        ease_background_colour({ new_colour = G.C.SET.Parcel, special_colour = G.C.WHITE, contrast = 2 })
+        ease_background_colour({ new_colour = G.C.WHITE, special_colour = G.C.SET.Parcel, contrast = 2 })
     end,
     loc_vars = function(self, info_queue, card)
         return { vars = { card.config.center.config.choose, card.ability.extra } }

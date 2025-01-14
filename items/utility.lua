@@ -23,7 +23,7 @@ G.FUNCS.format_cost = function(num)
     return str
 end
 
-G.FUNCS.create_playing_card_in_deck = function(t)
+--[[G.FUNCS.create_playing_card_in_deck = function(t)
     if not t.suits then t.suits = SMODS.Suits end
     if not t.ranks then t.ranks = SMODS.Ranks end
     local cards = {}
@@ -42,6 +42,45 @@ G.FUNCS.create_playing_card_in_deck = function(t)
     }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Packet })
     playing_card_joker_effects(cards)
     return _card
+end]]
+
+G.FUNCS.create_playing_card_in_deck_alt = function(t)
+    if not t.suits then t.suits = SMODS.Suits end
+    if not t.ranks then t.ranks = SMODS.Ranks end
+    local cards = {}
+    cards[1] = true
+    local suitset = {}
+    local rankset = {}
+    for key, value in pairs(t.suits) do
+        suitset[value.key] = true
+    end
+    for key, value in pairs(t.ranks) do
+        rankset[value.key] = true
+    end
+    local possibilities = {}
+    for key, val in pairs(G.P_CARDS) do
+        table.insert(possibilities, key)
+    end
+    pseudoshuffle(possibilities, pseudoseed('draft_create'))
+    local i = 1
+    while true do
+        local front = G.P_CARDS[ possibilities[(i % #possibilities) + 1] ]
+        if suitset[front.suit] ~= nil and rankset[front.value] ~= nil then
+            local center
+            if t.enhancements then
+                center = pseudorandom_element(t.enhancements, pseudoseed('draft_enhancement'))
+            else
+                center = G.P_CENTERS.c_base
+            end
+            local _card = create_playing_card({
+            front = front,
+            center = center
+            }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Packet })
+            playing_card_joker_effects(cards)
+            return _card
+        end
+        i = i + 1
+    end
 end
 
 G.FUNCS.get_next_rank = function(rank)
@@ -58,7 +97,12 @@ G.FUNCS.get_next_rank = function(rank)
     return SMODS.Ranks[new_rank]
 end
 
-G.FUNCS.create_playing_cards_in_deck = function(t)
+function compact(x)
+    local value = pseudorandom_element(x, pseudoseed(tostring(x)))
+    return { value }
+end
+
+--[[G.FUNCS.create_playing_cards_in_deck = function(t)
     if not t.amount then t.amount = 1 end
     if not t.suits then t.suits = SMODS.Suits end
     if not t.ranks then t.ranks = SMODS.Ranks end
@@ -106,6 +150,184 @@ G.FUNCS.create_playing_cards_in_deck = function(t)
     end
     playing_card_joker_effects(cards)
     return cards
+end]]
+
+G.FUNCS.create_playing_cards_in_deck_alt = function(t)
+    if not t.amount then t.amount = 1 end
+    if not t.suits then t.suits = SMODS.Suits end
+    if not t.ranks then t.ranks = SMODS.Ranks end
+    if t.onesuit then t.suits = compact(t.suits) end
+    if t.onerank then t.ranks = compact(t.ranks) end
+    local cards = {}
+    local suitset = {}
+    local rankset = {}
+    for key, value in pairs(t.suits) do
+        suitset[value.key] = true
+    end
+    for key, value in pairs(t.ranks) do
+        rankset[value.key] = true
+    end
+    local current_amount = 0
+    local possibilities = {}
+    for key, val in pairs(G.P_CARDS) do
+        table.insert(possibilities, key)
+    end
+    pseudoshuffle(possibilities, pseudoseed('draft_create'))
+    local i = 1
+    while current_amount < t.amount do
+        local front = G.P_CARDS[ possibilities[(i % #possibilities) + 1] ]
+        if suitset[front.suit] ~= nil and rankset[front.value] ~= nil then
+            local center
+            if t.enhancements then
+                center = pseudorandom_element(t.enhancements, pseudoseed('draft_enhancement'))
+            else
+                center = G.P_CENTERS.c_base
+            end
+            create_playing_card({
+            front = front,
+            center = center
+            }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Packet })
+            current_amount = current_amount + 1
+        end
+        cards[i] = true
+        i = i + 1
+    end
+    playing_card_joker_effects(cards)
+    return cards
+end
+
+G.FUNCS.create_playing_cards_in_deck_balanced = function(t)
+    if not t.base_amount then t.base_amount = 1 end
+    if not t.suits then t.suits = SMODS.Suits end
+    if not t.ranks then t.ranks = SMODS.Ranks end
+    if t.onesuit then t.suits = compact(t.suits) end
+    if t.onerank then t.ranks = compact(t.ranks) end
+    local cards = {}
+    local suitset = {}
+    for key, value in pairs(t.suits) do
+        suitset[value.key] = true
+    end
+    local special_rankset = {}
+    if t.special_ranks then
+        for key, value in pairs(t.special_ranks) do
+            special_rankset[value] = true
+        end
+    end
+    local banned_rankset = {}
+    if t.banned_ranks then
+        for key, value in pairs(t.banned_ranks) do
+            banned_rankset[value] = true
+        end
+    end
+    local amount_per_rank = {}
+    for key, val in pairs(t.ranks) do
+        if t.banned_ranks and banned_rankset[val] ~= nil then
+            amount_per_rank[val] = 0
+        elseif t.special_ranks and special_rankset[val] ~= nil then
+            amount_per_rank[val] = t.special_amount
+        else
+            amount_per_rank[val] = t.base_amount
+        end
+    end
+    if t.additional_amount then
+        local possibilities = {}
+        for key, val in pairs(t.ranks) do
+            if t.special_ranks and special_rankset[val] ~= nil then
+                
+            else
+                table.insert(possibilities, val)
+            end
+        end
+        pseudoshuffle(possibilities, pseudoseed('draft_create'))
+        for i = 1, t.additional_amount, 1 do
+            amount_per_rank[possibilities[(i % #possibilities) + 1]] = amount_per_rank[possibilities[(i % #possibilities) + 1]] + 1
+        end
+    end
+    for key, value in pairs(t.ranks) do
+        local possibilities = {}
+        for key, val in pairs(G.P_CARDS) do
+            if val.value == value.key then
+                table.insert(possibilities, key)
+            end
+        end
+        pseudoshuffle(possibilities, pseudoseed('draft_create'))
+        local current_amount = 0
+        local i = 1
+        while current_amount < amount_per_rank[value] do
+            local front = G.P_CARDS[ possibilities[(i % #possibilities) + 1] ]
+            if suitset[front.suit] ~= nil then
+                local center
+                if t.enhancements then
+                    center = pseudorandom_element(t.enhancements, pseudoseed('draft_enhancement'))
+                else
+                    center = G.P_CENTERS.c_base
+                end
+                create_playing_card({
+                front = front,
+                center = center
+                }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
+                current_amount = current_amount + 1
+            end
+            cards[i] = true
+            i = i + 1
+        end
+    end
+    playing_card_joker_effects(cards)
+    return cards
+end
+
+G.FUNCS.create_playing_cards_in_deck_straight = function(t)
+    if not t.amount then t.amount = 1 end
+    if not t.suits then t.suits = SMODS.Suits end
+    if not t.ranks then t.ranks = SMODS.Ranks end
+    if t.onesuit then t.suits = compact(t.suits) end
+    local cards = {}
+    local suitset = {}
+    local current_rank
+    for key, value in pairs(t.suits) do
+        suitset[value.key] = true
+    end
+    local valids = {}
+    for _, v in pairs(t.ranks) do
+        if (v.id <= 15 - t.amount) or v.id == 14 then table.insert(valids, v) end
+    end
+    t.ranks = valids
+    for i = 1, t.amount do
+        if i == 1 then
+            current_rank = pseudorandom_element(t.ranks, pseudoseed('draft_create'))
+        else
+            current_rank = G.FUNCS.get_next_rank(current_rank)
+        end
+        local possibilities = {}
+        for key, val in pairs(G.P_CARDS) do
+            if val.value == current_rank.key then
+                table.insert(possibilities, key)
+            end
+        end
+        pseudoshuffle(possibilities, pseudoseed('draft_create'))
+        local current_amount = 0
+        local j = 1
+        while current_amount < 1 do
+            local front = G.P_CARDS[ possibilities[(j % #possibilities) + 1] ]
+            if suitset[front.suit] ~= nil then
+                local center
+                if t.enhancements then
+                    center = pseudorandom_element(t.enhancements, pseudoseed('draft_enhancement'))
+                else
+                    center = G.P_CENTERS.c_base
+                end
+                create_playing_card({
+                    front = front,
+                    center = center
+                }, G.deck, nil, j ~= 1, { G.C.SECONDARY_SET.Packet })
+                current_amount = current_amount + 1
+            end
+            j = j + 1
+        end
+        cards[i] = true
+    end
+    playing_card_joker_effects(cards)
+    return cards
 end
 
 G.FUNCS.packet_effect = function(card, t)
@@ -117,7 +339,31 @@ G.FUNCS.packet_effect = function(card, t)
         end
         if not t.nocards then 
             t.amount = card.ability.extra.amount
-            G.FUNCS.create_playing_cards_in_deck(t)
+            if t.straight then
+                t.base_amount = card.ability.extra.amount
+                G.FUNCS.create_playing_cards_in_deck_straight(t)
+            elseif t.balanced then
+                G.FUNCS.create_playing_cards_in_deck_balanced(t)
+            else
+                G.FUNCS.create_playing_cards_in_deck_alt(t)
+            end
+        end
+        if G.STATE == G.STATES.SMODS_BOOSTER_OPENED then
+            G.GAME.starting_deck_size = #G.playing_cards
+        end
+        return true end }))
+    delay(0.6)
+end
+
+G.FUNCS.parcel_effect = function(card, t)
+    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+        play_sound('timpani')
+        card:juice_up(0.3, 0.5)
+        if card.ability.extra.cost ~= 0 then
+            ease_dollars(card.ability.extra.cost)
+        end
+        if not t.nocards then
+            G.FUNCS.create_playing_cards_in_deck_balanced(t)
         end
         if G.STATE == G.STATES.SMODS_BOOSTER_OPENED then
             G.GAME.starting_deck_size = #G.playing_cards
@@ -326,4 +572,13 @@ function G.FUNCS.get_current_deck()
         return G.GAME.selected_back.effect.center
     end
     return nil
+end
+
+G.FUNCS.face_ranks = function()
+    local faces = {}
+    for _, v in ipairs(SMODS.Rank.obj_buffer) do
+        local r = SMODS.Ranks[v]
+        if r.face then table.insert(faces, r) end
+    end
+    return faces
 end

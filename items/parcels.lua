@@ -39,39 +39,28 @@ local betterredthandead = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, amount_1 = 0}},
+    config = {extra = {cost = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
-        card.ability.extra.amount = 0
-        card.ability.extra.amount_1 = 0
+        local amount = 0
+        local amount_1 = 0
         for key, value in pairs(G.P_CARDS) do
             if value.suit == "Hearts" then
-                card.ability.extra.amount = card.ability.extra.amount + 1
+                amount = amount + card.ability.extra.base_amount / 2
             end
             if value.suit == "Diamonds" then
-                card.ability.extra.amount_1 = card.ability.extra.amount_1 + 1
+                amount_1 = amount_1 + card.ability.extra.base_amount / 2
             end
         end
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), amount, amount_1} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(G.P_CARDS) do
-            if value.suit == "Hearts" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-            if value.suit == "Diamonds" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            suits={SMODS.Suits["Hearts"],SMODS.Suits["Diamonds"]}
+        })
     end,
 }
 --thedarkside
@@ -83,39 +72,28 @@ local thedarkside = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, amount_1 = 0}},
+    config = {extra = {cost = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
-        card.ability.extra.amount = 0
-        card.ability.extra.amount_1 = 0
+        local amount = 0
+        local amount_1 = 0
         for key, value in pairs(G.P_CARDS) do
             if value.suit == "Clubs" then
-                card.ability.extra.amount = card.ability.extra.amount + 1
+                amount = amount + card.ability.extra.base_amount / 2
             end
             if value.suit == "Spades" then
-                card.ability.extra.amount_1 = card.ability.extra.amount_1 + 1
+                amount_1 = amount_1 + card.ability.extra.base_amount / 2
             end
         end
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), amount, amount_1} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(G.P_CARDS) do
-            if value.suit == "Spades" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-            if value.suit == "Clubs" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            suits={SMODS.Suits["Spades"],SMODS.Suits["Clubs"]}
+        })
     end,
 }
 --checkered
@@ -127,39 +105,28 @@ local checkered = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, amount_1 = 0}},
+    config = {extra = {cost = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
-        card.ability.extra.amount = 0
-        card.ability.extra.amount_1 = 0
+        local amount = 0
+        local amount_1 = 0
         for key, value in pairs(G.P_CARDS) do
             if value.suit == "Hearts" then
-                card.ability.extra.amount = card.ability.extra.amount + 1
+                amount = amount + card.ability.extra.base_amount / 2
             end
             if value.suit == "Spades" then
-                card.ability.extra.amount_1 = card.ability.extra.amount_1 + 1
+                amount_1 = amount_1 + card.ability.extra.base_amount / 2
             end
         end
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), amount, amount_1} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(G.P_CARDS) do
-            if value.suit == "Hearts" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-            if value.suit == "Spades" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            suits={SMODS.Suits["Hearts"],SMODS.Suits["Spades"]}
+        })
     end,
 }
 --chessboard
@@ -171,39 +138,28 @@ local chessboard = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, amount_1 = 0}},
+    config = {extra = {cost = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
-        card.ability.extra.amount = 0
-        card.ability.extra.amount_1 = 0
+        local amount = 0
+        local amount_1 = 0
         for key, value in pairs(G.P_CARDS) do
             if value.suit == "Diamonds" then
-                card.ability.extra.amount = card.ability.extra.amount + 1
+                amount = amount + card.ability.extra.base_amount / 2
             end
             if value.suit == "Clubs" then
-                card.ability.extra.amount_1 = card.ability.extra.amount_1 + 1
+                amount_1 = amount_1 + card.ability.extra.base_amount / 2
             end
         end
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), amount, amount_1} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(G.P_CARDS) do
-            if value.suit == "Diamonds" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-            if value.suit == "Clubs" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            suits={SMODS.Suits["Clubs"],SMODS.Suits["Diamonds"]}
+        })
     end,
 }
 --bloodandiron
@@ -215,39 +171,28 @@ local bloodandiron = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, amount_1 = 0}},
+    config = {extra = {cost = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
-        card.ability.extra.amount = 0
-        card.ability.extra.amount_1 = 0
+        local amount = 0
+        local amount_1 = 0
         for key, value in pairs(G.P_CARDS) do
             if value.suit == "Hearts" then
-                card.ability.extra.amount = card.ability.extra.amount + 1
+                amount = amount + card.ability.extra.base_amount / 2
             end
             if value.suit == "Clubs" then
-                card.ability.extra.amount_1 = card.ability.extra.amount_1 + 1
+                amount_1 = amount_1 + card.ability.extra.base_amount / 2
             end
         end
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), amount, amount_1} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(G.P_CARDS) do
-            if value.suit == "Hearts" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-            if value.suit == "Clubs" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            suits={SMODS.Suits["Hearts"],SMODS.Suits["Clubs"]}
+        })
     end,
 }
 --digginanddrillin
@@ -259,39 +204,28 @@ local digginanddrillin = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, amount_1 = 0}},
+    config = {extra = {cost = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
-        card.ability.extra.amount = 0
-        card.ability.extra.amount_1 = 0
+        local amount = 0
+        local amount_1 = 0
         for key, value in pairs(G.P_CARDS) do
             if value.suit == "Diamonds" then
-                card.ability.extra.amount = card.ability.extra.amount + 1
+                amount = amount + card.ability.extra.base_amount / 2
             end
             if value.suit == "Spades" then
-                card.ability.extra.amount_1 = card.ability.extra.amount_1 + 1
+                amount_1 = amount_1 + card.ability.extra.base_amount / 2
             end
         end
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), amount, amount_1} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(G.P_CARDS) do
-            if value.suit == "Diamonds" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-            if value.suit == "Spades" then
-                create_playing_card({
-                    front = value,
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            suits={SMODS.Suits["Spades"],SMODS.Suits["Diamonds"]}
+        })
     end,
 }
 --have all the aces
@@ -320,31 +254,11 @@ local havealltheaces = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_havealltheaces'))
-            if value == SMODS.Ranks["Ace"] then
-                for i = 1, card.ability.extra.ace_num, 1 do
-                    create_playing_card({
-                        front = possibilities[(i % #possibilities) + 1],
-                        _center = G.P_CENTERS.c_base
-                        }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-                end
-            else
-                for i = 1, card.ability.extra.else_num, 1 do
-                    create_playing_card({
-                        front = possibilities[(i % #possibilities) + 1],
-                        _center = G.P_CENTERS.c_base
-                        }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-                end
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.else_num,
+            special_ranks={SMODS.Ranks["Ace"]},
+            special_amount=card.ability.extra.ace_num
+        })
     end,
 }
 --facethemusic
@@ -373,31 +287,12 @@ local facethemusic = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_reachforthestars'))
-            if value.face then
-                for i = 1, card.ability.extra.num_face, 1 do
-                    create_playing_card({
-                        front = possibilities[(i % #possibilities) + 1],
-                        _center = G.P_CENTERS.c_base
-                        }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-                end
-            elseif value ~= SMODS.Ranks["Ace"] then
-                for i = 1, card.ability.extra.num_rest, 1 do
-                    create_playing_card({
-                        front = possibilities[(i % #possibilities) + 1],
-                        _center = G.P_CENTERS.c_base
-                        }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-                end
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.num_rest,
+            special_ranks=G.FUNCS.face_ranks(),
+            special_amount=card.ability.extra.num_face,
+            banned_ranks={SMODS.Ranks["Ace"]}
+        })
     end,
 }
 --allalone
@@ -409,12 +304,12 @@ local allalone = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, num = 2}},
+    config = {extra = {cost = 0, amount = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
         card.ability.extra.amount = 0
         for key, value in pairs(SMODS.Ranks) do
             if not value.face then
-                card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.num
+                card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
             end
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
@@ -423,24 +318,10 @@ local allalone = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_allalone'))
-            if not value.face then
-                for i = 1, card.ability.extra.num, 1 do
-                    create_playing_card({
-                        front = possibilities[(i % #possibilities) + 1],
-                        _center = G.P_CENTERS.c_base
-                        }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-                end
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            banned_ranks=G.FUNCS.face_ranks()
+        })
     end,
 }
 --your reading is...
@@ -452,12 +333,12 @@ local yourreadingis = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, num = 2}},
+    config = {extra = {cost = 0, amount = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_charm" }
         card.ability.extra.amount = 0
         for key, value in pairs(SMODS.Ranks) do
-            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.num
+            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -465,22 +346,9 @@ local yourreadingis = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_yourreadingis'))
-            for i = 1, card.ability.extra.num, 1 do
-                create_playing_card({
-                    front = possibilities[i],
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount
+        })
         add_tag(Tag("tag_charm"))
     end,
 }
@@ -493,12 +361,12 @@ local aimforthestars = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, num = 2}},
+    config = {extra = {cost = 0, amount = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_meteor" }
         card.ability.extra.amount = 0
         for key, value in pairs(SMODS.Ranks) do
-            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.num
+            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -506,22 +374,9 @@ local aimforthestars = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_reachforthestars'))
-            for i = 1, card.ability.extra.num, 1 do
-                create_playing_card({
-                    front = possibilities[i],
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount
+        })
         add_tag(Tag("tag_meteor"))
     end,
 }
@@ -534,12 +389,12 @@ local spectralprocession = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, num = 2}},
+    config = {extra = {cost = 0, amount = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_ethereal" }
         card.ability.extra.amount = 0
         for key, value in pairs(SMODS.Ranks) do
-            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.num
+            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -547,22 +402,9 @@ local spectralprocession = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_spectralprocession'))
-            for i = 1, card.ability.extra.num, 1 do
-                create_playing_card({
-                    front = possibilities[i],
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount
+        })
         add_tag(Tag("tag_ethereal"))
     end,
 }
@@ -575,12 +417,12 @@ local investinyourself = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, num = 2}},
+    config = {extra = {cost = 0, amount = 0, base_amount = 2}},
     loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_investment", specific_vars = {15}}
         card.ability.extra.amount = 0
         for key, value in pairs(SMODS.Ranks) do
-            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.num
+            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -588,22 +430,9 @@ local investinyourself = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_investinyourself'))
-            for i = 1, card.ability.extra.num, 1 do
-                create_playing_card({
-                    front = possibilities[i],
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount
+        })
         add_tag(Tag("tag_investment"))
     end,
 }
@@ -616,12 +445,12 @@ local overdraft = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, base_num = 1, num_additional = 7}},
+    config = {extra = {cost = 0, amount = 0, base_amount = 1, additional_amount = 7}},
     loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = { set = "Tag", key = "tag_draft_drafttag" }
-        card.ability.extra.amount = card.ability.extra.num_additional
+        card.ability.extra.amount = card.ability.extra.additional_amount
         for key, value in pairs(SMODS.Ranks) do
-            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_num
+            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -629,34 +458,10 @@ local overdraft = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        local amount_per_rank = {}
-        for key, val in pairs(SMODS.Ranks) do
-            amount_per_rank[val] = card.ability.extra.base_num
-        end
-        local possibilities = {}
-        for key, val in pairs(SMODS.Ranks) do
-            table.insert(possibilities, val)
-        end
-        pseudoshuffle(possibilities, pseudoseed('draft_overdraft'))
-        for i = 1, card.ability.extra.num_additional, 1 do
-            amount_per_rank[possibilities[(i % #possibilities) + 1]] = amount_per_rank[possibilities[(i % #possibilities) + 1]] + 1
-        end
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_overdraft'))
-            for i = 1, amount_per_rank[value], 1 do
-                create_playing_card({
-                    front = possibilities[i],
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            additional_amount=card.ability.extra.additional_amount
+        })
         add_tag(Tag("tag_draft_drafttag"))
     end,
 }
@@ -688,30 +493,6 @@ local hackstarterpack = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_hackstarterpack'))
-            if value == SMODS.Ranks["2"] or value == SMODS.Ranks["3"] or value == SMODS.Ranks["4"] or value == SMODS.Ranks["5"] then
-                for i = 1, card.ability.extra.num_hack, 1 do
-                    create_playing_card({
-                        front = possibilities[(i % #possibilities) + 1],
-                        _center = G.P_CENTERS.c_base
-                        }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-                end
-            else
-                for i = 1, card.ability.extra.num_rest, 1 do
-                    create_playing_card({
-                        front = possibilities[(i % #possibilities) + 1],
-                        _center = G.P_CENTERS.c_base
-                        }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-                end
-            end
-        end
         if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) then
             G.GAME.joker_buffer = G.GAME.joker_buffer + 1
             G.E_MANAGER:add_event(Event({
@@ -724,7 +505,11 @@ local hackstarterpack = SMODS.Consumable {
                     return true
             end}))
         end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.num_rest,
+            special_ranks={SMODS.Ranks["2"] , SMODS.Ranks["3"] , SMODS.Ranks["4"] , SMODS.Ranks["5"]},
+            special_amount=card.ability.extra.num_hack
+        })
     end,
 }
 --bananasmuggler
@@ -736,12 +521,12 @@ local bananasmuggler = SMODS.Consumable {
     atlas = 'parcel_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 0, base_num = 2, num_additional = 4}},
+    config = {extra = {cost = 0, amount = 0, base_amount = 2, additional_amount = 4}},
     loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = { set = "Joker", key = "j_gros_michel", specific_vars = {15, 1, 6} }
-		card.ability.extra.amount = card.ability.extra.num_additional
+		card.ability.extra.amount = card.ability.extra.additional_amount
         for key, value in pairs(SMODS.Ranks) do
-            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_num
+            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
         end
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -750,33 +535,6 @@ local bananasmuggler = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        local amount_per_rank = {}
-        for key, val in pairs(SMODS.Ranks) do
-            amount_per_rank[val] = card.ability.extra.base_num
-        end
-        local possibilities = {}
-        for key, val in pairs(SMODS.Ranks) do
-            table.insert(possibilities, val)
-        end
-        pseudoshuffle(possibilities, pseudoseed('draft_bananasmuggler'))
-        for i = 1, card.ability.extra.num_additional, 1 do
-            amount_per_rank[possibilities[(i % #possibilities) + 1]] = amount_per_rank[possibilities[(i % #possibilities) + 1]] + 1
-        end
-        for key, value in pairs(SMODS.Ranks) do
-            local possibilities = {}
-            for key, val in pairs(G.P_CARDS) do
-                if val.value == value.key then
-                    table.insert(possibilities, val)
-                end
-            end
-            pseudoshuffle(possibilities, pseudoseed('draft_bananasmuggler'))
-            for i = 1, amount_per_rank[value], 1 do
-                create_playing_card({
-                    front = possibilities[i],
-                    _center = G.P_CENTERS.c_base
-                    }, G.deck, nil, i ~= 1, { G.C.SECONDARY_SET.Parcel })
-            end
-        end
         if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) then
             G.GAME.joker_buffer = G.GAME.joker_buffer + 1
             G.E_MANAGER:add_event(Event({
@@ -789,6 +547,9 @@ local bananasmuggler = SMODS.Consumable {
                     return true
             end}))
         end
-        G.FUNCS.packet_effect(card, {nocards=true})
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            additional_amount=card.ability.extra.additional_amount
+        })
     end,
 }

@@ -236,21 +236,18 @@ local lovetriangle = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -1, amount = 1, amount_1 = 1, amount_2 = 1}},
+    config = {extra = {cost = -1, amount = 1}},
     loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1, card.ability.extra.amount_1} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for i = 1, card.ability.extra.amount_1, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["Queen"]}})
-        end
-        for i = 1, card.ability.extra.amount_2, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["King"]}})
-        end
-        G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks["Jack"]}})
+        G.FUNCS.packet_effect(card, {
+            balanced=true,
+            ranks=G.FUNCS.face_ranks()
+        })
     end,
 }
 --turkey
@@ -337,27 +334,18 @@ local perfectcurve = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 1, amount_1 = 1,  amount_2 = 1,  amount_3 = 1,  amount_4 = 1}},
+    config = {extra = {cost = 0, amount = 1}},
     loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1, card.ability.extra.amount_2, card.ability.extra.amount_3, card.ability.extra.amount_4} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for i = 1, card.ability.extra.amount_1, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["2"]}})
-        end
-        for i = 1, card.ability.extra.amount_2, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["3"]}})
-        end
-        for i = 1, card.ability.extra.amount_3, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["5"]}})
-        end
-        for i = 1, card.ability.extra.amount_4, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["8"]}})
-        end
-        G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks["Ace"]}})
+        G.FUNCS.packet_effect(card, {
+            balanced=true,
+            ranks={SMODS.Ranks["Ace"], SMODS.Ranks["2"], SMODS.Ranks["3"], SMODS.Ranks["5"], SMODS.Ranks["8"]}
+        })
     end,
 }
 --notaddingup
@@ -369,27 +357,18 @@ local notaddingup = SMODS.Consumable {
     atlas = 'packet_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, amount = 1, amount_1 = 1,  amount_2 = 1,  amount_3 = 1,  amount_4 = 1}},
+    config = {extra = {cost = 0, amount = 1}},
     loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount, card.ability.extra.amount_1, card.ability.extra.amount_2, card.ability.extra.amount_3, card.ability.extra.amount_4} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        for i = 1, card.ability.extra.amount_1, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["6"]}})
-        end
-        for i = 1, card.ability.extra.amount_2, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["7"]}})
-        end
-        for i = 1, card.ability.extra.amount_3, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["9"]}})
-        end
-        for i = 1, card.ability.extra.amount_4, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["10"]}})
-        end
-        G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks["4"]}})
+        G.FUNCS.packet_effect(card, {
+            balanced=true,
+            ranks={SMODS.Ranks["4"], SMODS.Ranks["6"], SMODS.Ranks["7"], SMODS.Ranks["9"], SMODS.Ranks["10"]}
+        })
     end,
 }
 --abandonallhope
@@ -926,7 +905,7 @@ local devilsnumber = SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         for i = 1, card.ability.extra.amount_special, 1 do
-            G.FUNCS.create_playing_card_in_deck({ranks={SMODS.Ranks["6"]}, enhancements={G.P_CENTERS.m_gold}})
+            G.FUNCS.create_playing_card_in_deck_alt({ranks={SMODS.Ranks["6"]}, enhancements={G.P_CENTERS.m_gold}})
         end
         G.FUNCS.packet_effect(card, {ranks={SMODS.Ranks["6"]}, onerank=true})
     end,
@@ -1164,7 +1143,7 @@ local wheelofdestiny = SMODS.Consumable {
 		local used_consumable = copier or card
         if pseudorandom("wheelofdestiny") < G.GAME.probabilities.normal / card.ability.extra.odds then
             for i = 1, card.ability.extra.amount_special, 1 do
-                local _card = G.FUNCS.create_playing_card_in_deck({})
+                local _card = G.FUNCS.create_playing_card_in_deck_alt({})
                 _card:set_edition(poll_edition("aura", nil, true, true), true)
                 _card:set_seal(SMODS.poll_seal({guaranteed = true}), true)
             end
@@ -1236,7 +1215,7 @@ local myprecious = SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         for i = 1, card.ability.extra.amount_special, 1 do
-            local _card = G.FUNCS.create_playing_card_in_deck({})
+            local _card = G.FUNCS.create_playing_card_in_deck_alt({})
             _card:set_edition(poll_edition("aura", nil, true, true), true)
         end
         G.FUNCS.packet_effect(card, {})
@@ -1260,7 +1239,7 @@ local sealthedeal = SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         for i = 1, card.ability.extra.amount_special, 1 do
-            local _card = G.FUNCS.create_playing_card_in_deck({})
+            local _card = G.FUNCS.create_playing_card_in_deck_alt({})
             _card:set_seal(SMODS.poll_seal({guaranteed = true}), true)
         end
         G.FUNCS.packet_effect(card, {})
@@ -1284,7 +1263,7 @@ local chosenone = SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         for i = 1, card.ability.extra.amount_special, 1 do
-            local _card = G.FUNCS.create_playing_card_in_deck({})
+            local _card = G.FUNCS.create_playing_card_in_deck_alt({})
             _card:set_edition(poll_edition("aura", nil, true, true), true)
             _card:set_seal(SMODS.poll_seal({guaranteed = true}), true)
         end
@@ -1316,7 +1295,7 @@ SMODS.Consumable {
 	end,
 	use = function(self, card, area, copier)
         for i = 1, card.ability.extra.amount_special, 1 do
-            local _card = G.FUNCS.create_playing_card_in_deck({})
+            local _card = G.FUNCS.create_playing_card_in_deck_alt({})
             _card:set_edition(poll_edition("aura", nil, true, true), true)
             _card:set_seal(SMODS.poll_seal({guaranteed = true}), true)
         end
