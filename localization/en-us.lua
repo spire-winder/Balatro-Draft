@@ -659,7 +659,7 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{}  cards",
-                    "Create a {C:bunco_virtual_dark}Arcade Tag{}"
+                    "Create an {C:bunco_virtual_dark}Arcade Tag{}"
                 },
             },
             c_draft_allalone = {
