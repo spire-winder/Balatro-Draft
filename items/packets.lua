@@ -556,7 +556,6 @@ local suitup = SMODS.Consumable {
         return true
     end,
     use = function(self, card, area, copier)
-        --local _suit = pseudorandom_element(SMODS.Suits, pseudoseed('draft_create'))
         G.FUNCS.packet_effect(card, {onesuit=true})
     end,
 }
@@ -1116,7 +1115,7 @@ local thewholeshebang = SMODS.Consumable {
     use = function(self, card, area, copier)
         local cards = {}
         local suitset = {}
-        for key, value in pairs(SMODS.Suits) do
+        for key, value in pairs(G.FUNCS.not_hidden_suits()) do
             suitset[value.key] = true
         end
         for key, value in pairs(G.P_CARDS) do

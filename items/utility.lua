@@ -45,7 +45,12 @@ end
 end]]
 
 G.FUNCS.create_playing_card_in_deck_alt = function(t)
-    if not t.suits then t.suits = SMODS.Suits end
+    if not t.suits then
+        if t.allow_hidden then
+            t.suits = SMODS.Suits end
+        else
+            t.suits = G.FUNCS.not_hidden_suits()
+        end
     if not t.ranks then t.ranks = SMODS.Ranks end
     local cards = {}
     cards[1] = true
@@ -102,6 +107,16 @@ function compact(x)
     return { value }
 end
 
+G.FUNCS.not_hidden_suits = function ()
+    local ret = {}
+    for key, value in pairs(SMODS.Suits) do
+        if not value.hidden then
+            ret[key] = value
+        end
+    end
+    return ret
+end
+
 --[[G.FUNCS.create_playing_cards_in_deck = function(t)
     if not t.amount then t.amount = 1 end
     if not t.suits then t.suits = SMODS.Suits end
@@ -154,7 +169,13 @@ end]]
 
 G.FUNCS.create_playing_cards_in_deck_alt = function(t)
     if not t.amount then t.amount = 1 end
-    if not t.suits then t.suits = SMODS.Suits end
+    if not t.suits then
+        if t.allow_hidden then
+            t.suits = SMODS.Suits
+        else
+            t.suits = G.FUNCS.not_hidden_suits()
+        end
+    end
     if not t.ranks then t.ranks = SMODS.Ranks end
     if t.onesuit then t.suits = compact(t.suits) end
     if t.onerank then t.ranks = compact(t.ranks) end
@@ -198,7 +219,13 @@ end
 
 G.FUNCS.create_playing_cards_in_deck_balanced = function(t)
     if not t.base_amount then t.base_amount = 1 end
-    if not t.suits then t.suits = SMODS.Suits end
+    if not t.suits then
+        if t.allow_hidden then
+            t.suits = SMODS.Suits
+        else
+            t.suits = G.FUNCS.not_hidden_suits()
+        end
+    end
     if not t.ranks then t.ranks = SMODS.Ranks end
     if t.onesuit then t.suits = compact(t.suits) end
     if t.onerank then t.ranks = compact(t.ranks) end
@@ -393,13 +420,19 @@ function loc_colour(_c, _default)
 	  return lc(_c, _default)
 end
 
-G.FUNCS.suit_dist = function ()
+G.FUNCS.suit_dist = function (allow_hidden)
+    local suit_table
+    if allow_hidden then
+        suit_table = SMODS.Suits
+    else
+        suit_table = G.FUNCS.not_hidden_suits()
+    end
     local suits = {}
-    for key, value in pairs(SMODS.Suits) do
+    for key, value in pairs(suit_table) do
         suits[value] = 0
     end
     for i = 1, #G.playing_cards do
-        for key, value in pairs(SMODS.Suits) do
+        for key, value in pairs(suit_table) do
             if G.playing_cards[i]:is_suit(key) then
                 suits[value] = suits[value] + 1
             end
@@ -408,7 +441,7 @@ G.FUNCS.suit_dist = function ()
     return suits
 end
 
-G.FUNCS.popular_suit = function()
+G.FUNCS.popular_suit = function(allow_hidden)
     local suits = G.FUNCS.suit_dist()
     local max = 0
     local ret = {}
@@ -423,12 +456,16 @@ G.FUNCS.popular_suit = function()
         end
     end
     if next(ret) == nil then
-        ret = SMODS.Suits
+        if allow_hidden then
+            ret = SMODS.Suits
+        else
+            ret = G.FUNCS.not_hidden_suits()
+        end
     end
     return ret
 end
 
-G.FUNCS.not_popular_suit = function()
+G.FUNCS.not_popular_suit = function(allow_hidden)
     local suits = G.FUNCS.suit_dist()
     local max = 0
     local ret = {}
@@ -443,12 +480,16 @@ G.FUNCS.not_popular_suit = function()
         end
     end
     if next(ret) == nil then
-        ret = SMODS.Suits
+        if allow_hidden then
+            ret = SMODS.Suits
+        else
+            ret = G.FUNCS.not_hidden_suits()
+        end
     end
     return ret
 end
 
-G.FUNCS.least_popular_suit = function()
+G.FUNCS.least_popular_suit = function(allow_hidden)
     local suits = G.FUNCS.suit_dist()
     local min
     local ret = {}
@@ -463,7 +504,11 @@ G.FUNCS.least_popular_suit = function()
         end
     end
     if next(ret) == nil then
-        ret = SMODS.Suits
+        if allow_hidden then
+            ret = SMODS.Suits
+        else
+            ret = G.FUNCS.not_hidden_suits()
+        end
     end
     return ret
 end
