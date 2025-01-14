@@ -87,8 +87,8 @@ return {
                 name = "Abandon All Hope",
                 text = {
                     "{C:money}#1#{}",
-                    "{C:green}X#2#{} random card of",
-                    "each {C:attention}non-face{} rank"
+                    "{C:green}X#2#{} of each",
+                    "{C:attention}non-face{} rank"
                 },
             },
             c_draft_thewholeshebang = {
@@ -200,10 +200,10 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random {C:attention}Ace{}",
-                    "{C:green}X#3#{} random {C:attention}2{}",
-                    "{C:green}X#4#{} random {C:attention}3{}",
-                    "{C:green}X#5#{} random {C:attention}5{}",
-                    "{C:green}X#6#{} random {C:attention}8{}",
+                    "{C:green}X#2#{} random {C:attention}2{}",
+                    "{C:green}X#2#{} random {C:attention}3{}",
+                    "{C:green}X#2#{} random {C:attention}5{}",
+                    "{C:green}X#2#{} random {C:attention}8{}",
                 },
             },
             c_draft_notaddingup = {
@@ -211,10 +211,10 @@ return {
                 text = {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} random {C:attention}4{}",
-                    "{C:green}X#3#{} random {C:attention}6{}",
-                    "{C:green}X#4#{} random {C:attention}7{}",
-                    "{C:green}X#5#{} random {C:attention}9{}",
-                    "{C:green}X#6#{} random {C:attention}10{}",
+                    "{C:green}X#2#{} random {C:attention}6{}",
+                    "{C:green}X#2#{} random {C:attention}7{}",
+                    "{C:green}X#2#{} random {C:attention}9{}",
+                    "{C:green}X#2#{} random {C:attention}10{}",
                 },
             },
             c_draft_copycat = {
@@ -247,9 +247,8 @@ return {
                 name = "Love Triangle",
                 text = {
                     "{C:money}#1#{}",
-                    "{C:green}X#2#{} random {C:attention}Jack",
-                    "{C:green}X#3#{} random {C:attention}Queen",
-                    "{C:green}X#4#{} random {C:attention}King"
+                    "{C:green}X#2#{} of",
+                    "each {C:attention}face{} card"
                 },
             },
             c_draft_straightaway = {
