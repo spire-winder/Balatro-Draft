@@ -45,12 +45,17 @@ end
 end]]
 
 G.FUNCS.create_playing_card_in_deck_alt = function(t)
+    print("creating card")
     if not t.suits then
+        print("suits not given")
         if t.allow_hidden then
-            t.suits = SMODS.Suits end
+            print("allowing hidden")
+            t.suits = SMODS.Suits
         else
+            print("disallow hidden")
             t.suits = G.FUNCS.not_hidden_suits()
         end
+    end
     if not t.ranks then t.ranks = SMODS.Ranks end
     local cards = {}
     cards[1] = true
@@ -315,7 +320,13 @@ end
 
 G.FUNCS.create_playing_cards_in_deck_straight = function(t)
     if not t.amount then t.amount = 1 end
-    if not t.suits then t.suits = SMODS.Suits end
+    if not t.suits then
+        if t.allow_hidden then
+            t.suits = SMODS.Suits
+        else
+            t.suits = G.FUNCS.not_hidden_suits()
+        end
+    end
     if not t.ranks then t.ranks = SMODS.Ranks end
     if t.onesuit then t.suits = compact(t.suits) end
     local actual_cards = {}
