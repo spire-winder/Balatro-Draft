@@ -486,7 +486,7 @@ local tradesecrets = SMODS.Consumable {
         delay(0.5)
         G.FUNCS.packet_effect(card, {})
     end,
-	in_pool = function(self, args) return #G.deck.cards >= self.config.extra.amount_remove end
+	in_pool = function(self, args) return G.deck.cards and #G.deck.cards >= self.config.extra.amount_remove end
 }
 --revolution
 local revolution = SMODS.Consumable {
@@ -532,6 +532,9 @@ local revolution = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {})
     end,
 	in_pool = function(self, args)
+        if not G.deck.cards then
+            return false
+        end
         local temp_deck = {}
         for k, v in ipairs(G.deck.cards) do 
             if v:is_face() then temp_deck[#temp_deck+1] = v end
