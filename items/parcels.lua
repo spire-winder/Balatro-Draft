@@ -476,7 +476,7 @@ local hackstarterpack = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = 0, amount = 0, num_hack = 3, num_rest = 2}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_hack", specific_vars = {} }
+        info_queue[#info_queue+1] = G.P_CENTERS.j_hack
 		local amount_hack = 0
         local amount_else = 0
         for key, value in pairs(SMODS.Ranks) do
@@ -523,7 +523,7 @@ local thefutureismeow = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = 0, amount = 0, base_amount = 2, special_amount = 3, additional_amount = 3}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_lucky_cat", specific_vars = {0.25, 1} }
+        info_queue[#info_queue+1] = G.P_CENTERS.j_lucky_cat
 		local amount_seven = 0
         local amount_else = card.ability.extra.additional_amount
         for key, value in pairs(SMODS.Ranks) do
@@ -572,7 +572,7 @@ local stowaway = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = 0, amount = 0, base_amount = 2, additional_amount = 6}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_riff_raff", specific_vars = {2} }
+		info_queue[#info_queue+1] = G.P_CENTERS.j_riff_raff
         local amount = card.ability.extra.additional_amount
         for key, value in pairs(SMODS.Ranks) do
             amount = amount + card.ability.extra.base_amount
@@ -613,7 +613,7 @@ local psychichex = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = 0, amount = 0, base_amount = 2, special_amount = 3, additional_amount = 3}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_sixth_sense", specific_vars = {} }
+        info_queue[#info_queue+1] = G.P_CENTERS.j_sixth_sense
 		local amount_six = 0
         local amount_else = card.ability.extra.additional_amount
         for key, value in pairs(SMODS.Ranks) do
@@ -662,7 +662,7 @@ local whoyougonnacall = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = 0, amount = 0, base_amount = 2, special_amount = 3, additional_amount = 2}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_walkie_talkie", specific_vars = {10, 4} }
+        info_queue[#info_queue+1] = G.P_CENTERS.j_walkie_talkie
 		local amount_tenfour = 0
         local amount_else = card.ability.extra.additional_amount
         for key, value in pairs(SMODS.Ranks) do
@@ -710,7 +710,7 @@ local illicitshipment = SMODS.Consumable {
     order = 1,
     config = {extra = {cost = 0, amount = 0, base_amount = 2, additional_amount = 4}},
     loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue + 1] = { set = "Joker", key = "j_gros_michel", specific_vars = {15, 1, 6} }
+        info_queue[#info_queue+1] = G.P_CENTERS.j_gros_michel
 		card.ability.extra.amount = card.ability.extra.additional_amount
         for key, value in pairs(SMODS.Ranks) do
             card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
