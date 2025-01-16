@@ -92,10 +92,10 @@ SMODS.Back{
         G.E_MANAGER:add_event(add_draft_tag_event)
 		if self.config.evolution < 3 then
 			self.config.evolution = self.config.evolution + 1
-			for k, v in pairs(G.I.CARD) do
-				if v.children.back then
-					v.children.back:set_sprite_pos({x=2, y=self.config.evolution})
-				end
+		end
+		for k, v in pairs(G.I.CARD) do
+			if v.children.back then
+				v.children.back:set_sprite_pos({x=2, y=self.config.evolution})
 			end
 		end
 		end
