@@ -35,6 +35,14 @@ return {
                     "and {C:attention}#1# {C:parcel,T:tag_draft_sealedtag}Sealed Tag{}",
                 },
             },
+            b_draft_evolvingdeck = {
+                name = "Evolving Deck",
+                text = {
+                    "Start run with no deck",
+                    "and {C:attention}#1# {C:parcel,T:tag_draft_slimsealedtag}Slim Sealed Tag{}",
+                    "After defeating each","{C:attention}Boss Blind{}, gain a {C:packet,T:tag_draft_drafttag}Draft Tag{}"
+                },
+            },
         },
         Joker = {
             
