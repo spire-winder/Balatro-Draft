@@ -787,6 +787,20 @@ return {
                     "too"
 				},
 			},
+			sleeve_draft_evolvingsleeve = {
+				name = "Sealed Sleeve",
+				text = {
+                    "Start run with no deck",
+                    "and {C:attention}#1# {C:parcel,T:tag_draft_slimsealedtag}Slim Sealed Tag{}",
+                    "After defeating each","{C:attention}Boss Blind{}, gain a {C:packet,T:tag_draft_drafttag}Draft Tag{}"
+				},
+			},
+			sleeve_draft_evolvingsleeve_alt = {
+				name = "Sealed Sleeve",
+				text = {
+                    "After defeating each","{C:attention}Boss Blind{}, gain a {C:packet,T:tag_draft_drafttag}Draft Tag{}"
+				},
+			},
         },
         Other = {
             p_draft_pack = {
