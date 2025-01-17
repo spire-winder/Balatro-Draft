@@ -741,6 +741,43 @@ local illicitshipment = SMODS.Consumable {
     end,
 }
 
+
+--godsend
+SMODS.Consumable {
+	set = "Spectral",
+	name = "draft-godsend",
+	key = "godsend",
+	pos = { x = 0, y = 1 },
+	soul_pos = { x = 1, y = 3 },
+	hidden = true,
+    cost=5,
+	soul_set = "Parcel",
+	atlas = 'parcel_atlas',
+    order = 1,
+    config = {extra = {cost = 0, amount = 0, base_amount = 1, additional_amount = 3, blessed_amount = 10}},
+    loc_vars = function(self, info_queue, card)
+		card.ability.extra.amount = card.ability.extra.additional_amount
+        for key, value in pairs(SMODS.Ranks) do
+            card.ability.extra.amount = card.ability.extra.amount + card.ability.extra.base_amount
+        end
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.blessed_amount, card.ability.extra.amount} }
+    end,
+	in_pool = function(self, args) return G.P_CENTERS.j_gros_michel.unlocked end,
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, card, area, copier)
+        for i = 1, card.ability.extra.blessed_amount, 1 do
+            local _card = G.FUNCS.create_playing_card_in_deck_alt({})
+            _card:set_edition(poll_edition("aura", nil, true, true), true)
+        end
+        G.FUNCS.parcel_effect(card, {
+            base_amount=card.ability.extra.base_amount,
+            additional_amount=card.ability.extra.additional_amount
+        })
+    end,
+}
+
 if BUNCOMOD then
     --exoticshipment
     local exoticshipment = SMODS.Consumable {
