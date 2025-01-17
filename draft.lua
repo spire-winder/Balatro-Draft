@@ -57,6 +57,14 @@ SMODS.Atlas {
 	py = 95,
 }
 
+SMODS.Atlas {
+	object_type = "Atlas",
+	key = "draft_evolving",
+	path = "decks.png",
+	px = 71,
+	py = 95,
+}
+
 Draft = SMODS.current_mod
 
 assert(SMODS.load_file("items/utility.lua"))()

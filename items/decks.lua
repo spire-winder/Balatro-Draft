@@ -49,16 +49,17 @@ SMODS.Back{
 	end,
 }
 
-SMODS.Back{
+local evolvingdeck = SMODS.Back{
 	name = "draft-evolvingdeck",
 	key = "evolvingdeck",
 	pos = {x = 2, y = 0},
 	config = { num_packs = 1, evolution = 0},
-	atlas = "deck_atlas",
+	atlas = "draft_evolving",
 	loc_vars = function(self)
 		return { vars = { self.config.num_packs } }
 	end,
 	apply = function(self)
+		draft_evolution_state = 0
 		G.E_MANAGER:add_event(Event({
 			func = function()
 				for i = #G.playing_cards, 1, -1 do
@@ -73,13 +74,6 @@ SMODS.Back{
 			end
 		}))
 	end,
-    load = function(self, card, card_table, other_card)
-        for k, v in pairs(G.I.CARD) do
-			if v.children.back then
-				v.children.back:set_sprite_pos({x=2, y=card.ability.evolution})
-			end
-		end
-    end,
 	calculate = function(self, card, context) 
 		if context.end_of_round and G.GAME.blind.boss and not context.other_card then
         local add_draft_tag_event = Event({
@@ -90,14 +84,22 @@ SMODS.Back{
             end)
         })
         G.E_MANAGER:add_event(add_draft_tag_event)
-		if self.config.evolution < 3 then
-			self.config.evolution = self.config.evolution + 1
-			for k, v in pairs(G.I.CARD) do
-				if v.children.back then
-					v.children.back:set_sprite_pos({x=2, y=self.config.evolution})
-				end
-			end
+		if draft_evolution_state < 3 then
+			draft_evolution_state = draft_evolution_state + 1
 		end
 		end
     end,
+	
 }
+
+--evolving deck patches
+local upd = Game.update
+draft_evolution_state = 0
+function Game:update(dt)
+	upd(self, dt)
+	for k, v in pairs(G.I.CARD) do
+		if v.children.back and v.children.back.atlas.name == "draft_evolving" then
+			v.children.back:set_sprite_pos({x=2, y=draft_evolution_state})
+		end
+	end
+end

@@ -157,9 +157,9 @@ if CardSleeves then
 			G.E_MANAGER:add_event(add_draft_tag_event)
 			if self.config.evolution < 3 then
 				self.config.evolution = self.config.evolution + 1
-				self.pos = {x = 2, y = self.config.evolution}  -- change sprite pos
-    			G.deck.sleeve_sprite = nil  -- force cardsleeves to reload the sprite
 			end
+			self.pos = {x = 2, y = self.config.evolution}  -- change sprite pos
+    		G.deck.sleeve_sprite = nil  -- force cardsleeves to reload the sprite
 			end
 		end,
 	}

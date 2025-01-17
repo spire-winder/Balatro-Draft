@@ -45,14 +45,10 @@ end
 end]]
 
 G.FUNCS.create_playing_card_in_deck_alt = function(t)
-    print("creating card")
     if not t.suits then
-        print("suits not given")
         if t.allow_hidden then
-            print("allowing hidden")
             t.suits = SMODS.Suits
         else
-            print("disallow hidden")
             t.suits = G.FUNCS.not_hidden_suits()
         end
     end
