@@ -74,8 +74,8 @@ local evolvingdeck = SMODS.Back{
 			end
 		}))
 	end,
-	calculate = function(self, card, context) 
-		if context.end_of_round and G.GAME.blind.boss and not context.other_card then
+	calculate = function(self, card, context)
+		if context.end_of_round and G.GAME.blind.boss and not context.individual and not context.repetition then
         local add_draft_tag_event = Event({
             func = (function()
                 add_tag(Tag('tag_draft_drafttag'))

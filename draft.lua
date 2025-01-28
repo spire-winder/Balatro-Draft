@@ -33,6 +33,14 @@ SMODS.Atlas {
 	py = 95,
 }
 
+--[[SMODS.Atlas {
+	object_type = "Atlas",
+	key = "clipper_atlas",
+	path = "clippers.png",
+	px = 71,
+	py = 95,
+}]]
+
 SMODS.Atlas {
 	object_type = "Atlas",
 	key = "cross_mod_packet_atlas",

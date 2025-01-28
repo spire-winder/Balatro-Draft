@@ -23,30 +23,30 @@ SMODS.ConsumableType {
 SMODS.UndiscoveredSprite {
     object_type = "UndiscoveredSprite",
     key = "Clipper",
-    atlas = "packet_atlas",
+    atlas = "clipper_atlas",
     pos = {
         x = 0,
         y = 0,
     }
 }
 
---slimpickings
-local slimpickings = SMODS.Consumable {
-    set = "Packet",
-    name = "draft-slimpickings",
-    key = "slimpickings",
-    pos = {x = 0, y = 1},
-    atlas = 'packet_atlas',
+--safetyscissors
+local safetyscissors = SMODS.Consumable {
+    set = "Clipper",
+    name = "draft-safetyscissors",
+    key = "safetyscissors",
+    pos = {x = 1, y = 0},
+    atlas = 'clipper_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = -1, amount = 3}},
+    config = {extra = {cost = 0, amount_selected = 2}},
     loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_selected} }
     end,
     can_use = function(self, card)
         return true
     end,
     use = function(self, card, area, copier)
-        G.FUNCS.packet_effect(card, {})
+        G.FUNCS.clipper_effect(card, {})
     end,
 }
