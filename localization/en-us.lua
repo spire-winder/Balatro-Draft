@@ -63,6 +63,15 @@ return {
                     "and random {C:attention}Seals{}"
                 },
             },
+            c_draft_godsend = {
+                name = "Godsend",
+                text = {
+                    "{C:money}#1#{}",
+                    "{C:green}X#2#{} cards",
+                    "with random {C:attention}Editions{}",
+                    "{C:green}X#3#{} other cards"
+                },
+            },
         },
         Packet = {
             c_draft_revolution = {
@@ -597,7 +606,7 @@ return {
                 name = "High Value Goods",
                 text = {
                     "{C:money}#1#{}",
-                    "{C:green}X#2#{} {C:attention}Enhanced{} cards",
+                    "{C:green}X#2#{} {C:attention}Edition{} cards",
                     "{C:green}X#3#{} other cards"
                 },
             },
