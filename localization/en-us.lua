@@ -72,6 +72,14 @@ return {
                     "{C:green}X#3#{} other cards"
                 },
             },
+            c_draft_atroposshears = {
+                name = "Atropos' Shears",
+                text = {
+                    "{C:money}#1#{}",
+                    "Destroy {C:red}all{}",
+                    "{C:attention}unselected{} cards"
+                },
+            }
         },
         Packet = {
             c_draft_revolution = {
@@ -725,6 +733,34 @@ return {
                     "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create a {C:planet}Meteor Tag{}"
+                },
+            },
+        },
+        Clipper = {
+            c_draft_safetyscissors = {
+                name = "Safety Scissors",
+                text = {
+                    "{C:money}#1#{}",
+                    "Destroy {C:red}X#2#{}",
+                    "{C:attention}selected{} cards"
+                },
+            },
+            c_draft_chainsaw = {
+                name = "Chainsaw",
+                text = {
+                    "{C:money}#1#{}",
+                    "Destroy {C:red}X#2#{}",
+                    "{C:attention}random{} cards"
+                },
+            },
+            c_draft_embroideryscissors = {
+                name = "Embroidery Scissors",
+                text = {
+                    "{C:money}#1#{}",
+                    "Destroy {C:red}X#2#{}",
+                    "{C:attention}selected{} cards",
+                    "and {C:red}X#3#{}",
+                    "{C:attention}random{} cards"
                 },
             },
         },
