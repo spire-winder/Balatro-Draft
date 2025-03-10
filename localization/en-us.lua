@@ -797,7 +797,7 @@ return {
 				},
 			},
 			sleeve_draft_evolvingsleeve = {
-				name = "Sealed Sleeve",
+				name = "Evolving Sleeve",
 				text = {
                     "Start run with no deck",
                     "and {C:attention}#1# {C:parcel,T:tag_draft_slimsealedtag}Slim Sealed Tag{}",
@@ -805,7 +805,7 @@ return {
 				},
 			},
 			sleeve_draft_evolvingsleeve_alt = {
-				name = "Sealed Sleeve",
+				name = "Evolving Sleeve",
 				text = {
                     "After defeating each","{C:attention}Boss Blind{}, gain a {C:packet,T:tag_draft_drafttag}Draft Tag{}"
 				},
