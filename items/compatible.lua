@@ -15,3 +15,8 @@ if unstb_global then
         end
     }, true)
 end
+
+if (SMODS.Mods["Bunco"] or {}).can_load then
+    SMODS.Suit:take_ownership('bunc_Fleurons', { exotic = true }, true)
+    SMODS.Suit:take_ownership('bunc_Halberds', { exotic = true }, true)
+end
