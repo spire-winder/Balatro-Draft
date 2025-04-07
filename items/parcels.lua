@@ -801,12 +801,18 @@ if BUNCOMOD then
         end,
         use = function(self, card, area, copier)
             enable_exotics()
+            local exoticsuits = G.FUNCS.filter_suits({only_exotic = true})
+                assert(exoticsuits and exoticsuits ~= {}, "No exotic suits!")
             G.FUNCS.create_playing_cards_in_deck_balanced({
                 base_amount=card.ability.extra.base_amount,
-                suits={SMODS.Suits["bunc_Fleurons"],SMODS.Suits["bunc_Halberds"]}
+                suits=exoticsuits
             })
-            G.FUNCS.parcel_effect(card, {
-                base_amount=card.ability.extra.base_amount
+            local validsuits = G.FUNCS.filter_suits({block_exotic = true})
+            --local othersuit = pseudorandom_element(validsuits, pseudoseed("exoticshipment"))
+                --Disabling this for now on the assumption that the other 13 not all being one suit is intentional
+            G.FUNCS.create_playing_cards_in_deck_balanced({
+                base_amount=card.ability.extra.parcel_amount,
+                suits=validsuits
             })
         end,
     }
