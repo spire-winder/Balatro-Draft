@@ -154,6 +154,7 @@ G.FUNCS.filter_suits = function (t)
 end
 
 G.FUNCS.not_hidden_suits = function ()
+    G.FUNCS.draftSay("not_hidden_suits is deprecated, use filter_suits instead!", "WARN ")
     local ret = {}
     for key, value in pairs(SMODS.Suits) do
         if not value.hidden then
