@@ -150,6 +150,15 @@ G.FUNCS.filter_suits = function (t)
         end
         if valid then ret[key] = value end
     end
+    if ret == {} then
+        G.FUNCS.draftSay("Please check your filter_suits arguments; no valid suits remain! Returning vanilla suits.", "ERROR")
+        ret = {
+            SMODS.Suits["Hearts"],
+            SMODS.Suits["Diamonds"],
+            SMODS.Suits["Clubs"],
+            SMODS.Suits["Spades"],
+        }
+    end
     return ret
 end
 
