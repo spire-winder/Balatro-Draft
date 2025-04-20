@@ -18,6 +18,11 @@ function G.FUNCS.draftSay(message, level)
     sendMessageToConsole(level, "Drafting", message)
 end
 
+enable_exotics = enable_exotics or function()
+    if G.GAME then G.GAME.Exotic = true end
+    G.FUNCS.draftSay('Triggered Exotic System enabling, probably to no actual effect.', "TRACE")
+end
+
 G.FUNCS.format_cost = function(num)
     local str = "$"..tostring(math.abs(num))
     if num == 0 then
