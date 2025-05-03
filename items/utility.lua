@@ -489,11 +489,8 @@ function loc_colour(_c, _default)
 	  return lc(_c, _default)
 end
 
-G.FUNCS.suit_dist = function (allow_hidden)
-    local suit_table
-    if not t.suits then
-        t.suits = G.FUNCS.filter_suits(t)
-    end
+G.FUNCS.suit_dist = function (t)
+    local suit_table = G.FUNCS.filter_suits(t)
     local suits = {}
     for key, value in pairs(suit_table) do
         suits[value] = 0
@@ -508,7 +505,7 @@ G.FUNCS.suit_dist = function (allow_hidden)
     return suits
 end
 
-G.FUNCS.popular_suit = function(allow_hidden)
+G.FUNCS.popular_suit = function(t)
     local suits = G.FUNCS.suit_dist()
     local max = 0
     local ret = {}
@@ -523,11 +520,9 @@ G.FUNCS.popular_suit = function(allow_hidden)
         end
     end
     if next(ret) == nil then
-        if not t.suits then
-            t.suits = G.FUNCS.filter_suits(t)
-        end
+        ret = G.FUNCS.filter_suits(t)
+        return ret
     end
-    return ret
 end
 
 G.FUNCS.not_popular_suit = function(allow_hidden)
@@ -545,9 +540,7 @@ G.FUNCS.not_popular_suit = function(allow_hidden)
         end
     end
     if next(ret) == nil then
-        if not t.suits then
-            t.suits = G.FUNCS.filter_suits(t)
-        end
+        ret = G.FUNCS.filter_suits(t)
     end
     return ret
 end
