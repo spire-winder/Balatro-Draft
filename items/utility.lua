@@ -486,6 +486,13 @@ G.FUNCS.destroy_cards_in_hand = function(t)
             targets[value] = true
         end
     end
+    if t.all_selected then
+        for index, value in ipairs(G.hand.highlighted) do
+            if not value.ability.eternal then
+                targets[value] = true
+            end
+        end
+    end
     if t.all_unselected then
         local selected = {}
         for index, value in ipairs(G.hand.highlighted) do

@@ -277,7 +277,7 @@ local scythe = SMODS.Consumable {
     atlas = 'clipper_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0, max_rank = 3}},
+    config = {extra = {cost = 0, max_rank = 5}},
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.max_rank} }
     end,
@@ -480,7 +480,7 @@ SMODS.Consumable {
     end,
     use = function(self, card, area, copier)
         G.FUNCS.clipper_effect(card, {
-            all_unselected=true
+            all_selected=true
         })
     end,
 }

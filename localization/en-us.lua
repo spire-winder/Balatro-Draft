@@ -83,7 +83,7 @@ return {
                 name = "Atropos's Shears",
                 text = {
                     "Destroy {C:red}all{}",
-                    "{C:attention}unselected{} cards"
+                    "{C:attention}selected{} cards"
                 },
             }
         },
@@ -849,8 +849,8 @@ return {
                 name = "Scythe",
                 text = {
                     "Destroy {C:red}all{}",
-                    "{C:attention}selected{} cards of",
-                    "rank {C:attention}#2#{} or less"
+                    "cards of rank {C:attention}#2#{}",
+                    "or less"
                 },
             },
             c_draft_lasercutter = {
