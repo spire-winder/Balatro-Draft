@@ -170,7 +170,7 @@ local hackerman = SMODS.Consumable {
         local hacker = {}
         for _, v in ipairs(SMODS.Rank.obj_buffer) do
             local r = SMODS.Ranks[v]
-            if r.nominal <= 5 and 
+            if r.nominal <= 5 and
             r.nominal >= 2 then table.insert(hacker, r) end
         end
         G.FUNCS.packet_effect(card, {ranks=hacker})
@@ -196,7 +196,7 @@ local middleoftheroad = SMODS.Consumable {
         local middle = {}
         for _, v in ipairs(SMODS.Rank.obj_buffer) do
             local r = SMODS.Ranks[v]
-            if r.nominal <= 10 and 
+            if r.nominal <= 10 and
             r.nominal >= 6 then table.insert(middle, r) end
         end
         G.FUNCS.packet_effect(card, {ranks=middle})
@@ -290,7 +290,7 @@ local eventheodds = SMODS.Consumable {
         local evens = {}
         for _, v in ipairs(SMODS.Rank.obj_buffer) do
             local r = SMODS.Ranks[v]
-            if (r.id <= 10 and 
+            if (r.id <= 10 and
             r.id >= 0 and
             r.id%2 == 0) then table.insert(evens, r) end
         end
@@ -317,7 +317,7 @@ local oddoneout = SMODS.Consumable {
         local odds = {}
         for _, v in ipairs(SMODS.Rank.obj_buffer) do
             local r = SMODS.Ranks[v]
-            if ((r.id <= 10 and 
+            if ((r.id <= 10 and
             r.id >= 0 and
             r.id%2 == 1) or
             (r.id == 14)) then table.insert(odds, r) end
@@ -473,10 +473,10 @@ local tradesecrets = SMODS.Consumable {
         G.E_MANAGER:add_event(Event({
             trigger = 'after',
             delay = 0.1,
-            func = function() 
+            func = function()
                 for i=#destroyed_cards, 1, -1 do
                     local card = destroyed_cards[i]
-                    if card.ability.name == 'Glass Card' then 
+                    if card.ability.name == 'Glass Card' then
                         card:shatter()
                     else
                         card:start_dissolve(nil, i == #destroyed_cards)
@@ -507,7 +507,7 @@ local revolution = SMODS.Consumable {
     use = function(self, card, area, copier)
         local destroyed_cards = {}
         local temp_deck = {}
-        for k, v in ipairs(G.deck.cards) do 
+        for k, v in ipairs(G.deck.cards) do
             if v:is_face() then temp_deck[#temp_deck+1] = v end
         end
         table.sort(temp_deck, function (a, b) return not a.playing_card or not b.playing_card or a.playing_card < b.playing_card end)
@@ -518,10 +518,10 @@ local revolution = SMODS.Consumable {
         G.E_MANAGER:add_event(Event({
             trigger = 'after',
             delay = 0.1,
-            func = function() 
+            func = function()
                 for i=#destroyed_cards, 1, -1 do
                     local card = destroyed_cards[i]
-                    if card.ability.name == 'Glass Card' then 
+                    if card.ability.name == 'Glass Card' then
                         card:shatter()
                     else
                         card:start_dissolve(nil, i == #destroyed_cards)
@@ -536,7 +536,7 @@ local revolution = SMODS.Consumable {
             return false
         end
         local temp_deck = {}
-        for k, v in ipairs(G.deck.cards) do 
+        for k, v in ipairs(G.deck.cards) do
             if v:is_face() then temp_deck[#temp_deck+1] = v end
         end
         return #temp_deck >= self.config.extra.amount_remove
@@ -952,7 +952,7 @@ local tarotreading = SMODS.Consumable {
     use = function(self, card, area, copier)
         G.FUNCS.packet_effect(card, {})
         G.E_MANAGER:add_event(Event({
-            func = function() 
+            func = function()
                 if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
                     local card = create_card('Tarot',G.consumeables, nil, nil, nil, nil, nil, 'ali')
                     card:add_to_deck()
@@ -1002,7 +1002,7 @@ local spectralforce = SMODS.Consumable {
     use = function(self, card, area, copier)
         G.FUNCS.packet_effect(card, {})
         G.E_MANAGER:add_event(Event({
-            func = function() 
+            func = function()
                 if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
                     local card = create_card('Spectral',G.consumeables, nil, nil, nil, nil, nil, 'sea')
                     card:add_to_deck()
@@ -1054,7 +1054,7 @@ local justriffin = SMODS.Consumable {
         if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) then
             G.GAME.joker_buffer = G.GAME.joker_buffer + 1
             G.E_MANAGER:add_event(Event({
-                func = function() 
+                func = function()
                     local card = create_card('Joker', G.jokers, nil, 0, nil, nil, nil, 'rif')
                     card:add_to_deck()
                     G.jokers:emplace(card)
@@ -1088,7 +1088,7 @@ local menatwork = SMODS.Consumable {
         if (#G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers) then
             G.GAME.joker_buffer = G.GAME.joker_buffer + 1
             G.E_MANAGER:add_event(Event({
-                func = function() 
+                func = function()
                     local card = create_card("Joker", G.jokers, nil, nil, nil, nil, "j_blueprint")
                     card:add_to_deck()
                     G.jokers:emplace(card)
@@ -1118,7 +1118,7 @@ local thewholeshebang = SMODS.Consumable {
     use = function(self, card, area, copier)
         local cards = {}
         local suitset = {}
-        for key, value in pairs(G.FUNCS.not_hidden_suits()) do
+        for key, value in pairs(G.FUNCS.filter_suits({block_exotic = true})) do
             suitset[value.key] = true
         end
         for key, value in pairs(G.P_CARDS) do
@@ -1440,7 +1440,7 @@ if MagicTheJokering then
         use = function(self, card, area, copier)
             G.FUNCS.packet_effect(card, {})
             G.E_MANAGER:add_event(Event({
-                func = function() 
+                func = function()
                     if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
                         local card = create_card('Magic',G.consumeables, nil, nil, nil, nil, nil, 'gather')
                         card:add_to_deck()
@@ -1474,7 +1474,7 @@ if Cryptid then
         use = function(self, card, area, copier)
             G.FUNCS.packet_effect(card, {})
             G.E_MANAGER:add_event(Event({
-                func = function() 
+                func = function()
                     if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
                         local card = create_card('Code',G.consumeables, nil, nil, nil, nil, nil, 'monk')
                         card:add_to_deck()
@@ -1537,30 +1537,6 @@ if BUNCOMOD then
             badges[#badges+1] = create_badge(localize('k_bunco'), HEX('666665'), G.C.WHITE, 1 )
         end,
     }
-    --rainbow
-    local rainbow = SMODS.Consumable {
-        set = "Packet",
-        name = "draft-rainbow",
-        key = "rainbow",
-        pos = {x = 2, y = 2},
-        atlas = 'cross_mod_packet_atlas',
-        cost = 0,
-        order = 1,
-        config = {extra = {cost = 0, amount = 5}},
-        loc_vars = function(self, info_queue, card)
-            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
-        end,
-        can_use = function(self, card)
-            return true
-        end,
-        use = function(self, card, area, copier)
-            enable_exotics()
-            G.FUNCS.packet_effect(card, {one_per_suit=true,allow_hidden=true})
-        end,
-        set_badges = function(self, card, badges)
-            badges[#badges+1] = create_badge(localize('k_bunco'), HEX('666665'), G.C.WHITE, 1 )
-        end,
-    }
     --polytheism
     local polytheism = SMODS.Consumable {
         set = "Packet",
@@ -1580,7 +1556,7 @@ if BUNCOMOD then
         use = function(self, card, area, copier)
             G.FUNCS.packet_effect(card, {})
             G.E_MANAGER:add_event(Event({
-                func = function() 
+                func = function()
                     if G.consumeables.config.card_limit - #G.consumeables.cards > 0 then
                         local card = create_card('Polymino',G.consumeables, nil, nil, nil, nil, nil, 'gather')
                         card:add_to_deck()
@@ -1613,6 +1589,69 @@ if BUNCOMOD then
         end,
         set_badges = function(self, card, badges)
             badges[#badges+1] = create_badge(localize('k_bunco'), HEX('666665'), G.C.WHITE, 1 )
+        end,
+    }
+end
+
+Draft.suitmods = {
+    "Bunco",
+    "magic_the_jokering",
+    "MintysSillyMod",
+    "paperback",
+    "SixSuits",
+    "InkAndColor",
+    "MusicalSuit",
+    "rcbalatro",
+    "sigil",
+    "Wzone",
+    nil, --Stop ipairs from counting past here
+    count = 0,
+    id = "",
+    badge = "None"
+}
+
+Draft.suitmod = function()
+    Draft.suitmods.count = 0
+    for _, v in ipairs(Draft.suitmods) do
+        if (SMODS.Mods[v] or {}).can_load then
+            Draft.suitmods.count = Draft.suitmods.count + 1
+            if Draft.suitmods.count == 1 then Draft.suitmods.id = v end
+            if Draft.suitmods.count == 2 then Draft.suitmods.id = "multisuitmods" break end
+        end
+    end
+    return Draft.suitmods.count > 0
+end
+
+if Draft.suitmod() then
+    --rainbow
+    local rainbow = SMODS.Consumable {
+        set = "Packet",
+        name = "draft-rainbow",
+        key = "rainbow",
+        pos = {x = 2, y = 2},
+        atlas = 'cross_mod_packet_atlas',
+        cost = 0,
+        order = 1,
+        config = {extra = {cost = 0, amount = 5}},
+        loc_vars = function(self, info_queue, card)
+            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+        end,
+        can_use = function(self, card)
+            return true
+        end,
+        use = function(self, card, area, copier)
+            enable_exotics()
+            G.FUNCS.packet_effect(card, {one_per_suit=true,allow_hidden=true})
+        end,
+        set_badges = function(self, card, badges)
+            if Draft.suitmods.badge == "None" or Draft.suitmods.badge == "ERROR" then --Localization doesn't exist yet on initial loading, so double-check this 
+                if Draft.suitmods.id == "multisuitmods" then
+                    Draft.suitmods.badge = localize('k_multisuitmods')
+                else
+                    Draft.suitmods.badge = SMODS.Mods[Draft.suitmods.id].display_name
+                end
+            end
+            badges[#badges+1] = create_badge(Draft.suitmods.badge, HEX('666665'), G.C.WHITE, 1 )
         end,
     }
 end

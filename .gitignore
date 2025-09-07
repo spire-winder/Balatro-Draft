@@ -41,3 +41,7 @@ luac.out
 
 #Photoshop files
 *.psd
+
+#.ignore files
+.lovelyignore
+.gitignore
