@@ -554,7 +554,7 @@ return {
             c_draft_thedarkside = {
                 name = "The Dark Side",
                 text = {
-                    "{C:money}#1#{}",
+                    --"{C:money}#1#{}",
                     "{C:green}X#2#{} {C:club}Clubs{}",
                     "{C:green}X#3#{} {C:spade}Spades{}",
                 },
@@ -562,7 +562,6 @@ return {
             c_draft_betterredthandead = {
                 name = "Better Red Than Dead",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:heart}Hearts{}",
                     "{C:green}X#3#{} {C:diamond}Diamonds{}"
                 },
@@ -570,7 +569,6 @@ return {
             c_draft_checkered = {
                 name = "Checkered",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:heart}Hearts{}",
                     "{C:green}X#3#{} {C:spade}Spades{}"
                 },
@@ -578,7 +576,6 @@ return {
             c_draft_chessboard = {
                 name = "Chessboard",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:diamond}Diamonds{}",
                     "{C:green}X#3#{} {C:clubs}Clubs{}"
                 },
@@ -586,7 +583,6 @@ return {
             c_draft_bloodandiron = {
                 name = "Blood and Iron",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:heart}Hearts{}",
                     "{C:green}X#3#{} {C:club}Clubs{}"
                 },
@@ -594,7 +590,6 @@ return {
             c_draft_digginanddrillin = {
                 name = "Diggin' and Drillin'",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:diamond}Diamonds{}",
                     "{C:green}X#3#{} {C:spade}Spades{}"
                 },
@@ -602,7 +597,6 @@ return {
             c_draft_facethemusic = {
                 name = "Face the Music",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:attention}face{} cards",
                     "{C:green}X#3#{} cards with",
                     "{C:red}no{} {C:attention}Aces{}"
@@ -611,7 +605,6 @@ return {
             c_draft_havealltheaces = {
                 name = "Have All the Aces",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:attention}Aces{}",
                     "{C:green}X#3#{} other cards"
                 },
@@ -619,7 +612,6 @@ return {
             c_draft_highvaluegoods = {
                 name = "High Value Goods",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:attention}Edition{} cards",
                     "{C:green}X#3#{} other cards"
                 },
@@ -627,7 +619,6 @@ return {
             c_draft_hackstarterpack = {
                 name = "Hack Starter Pack",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards of",
                     "rank {C:attention}2{}, {C:attention}3{}, {C:attention}4{}, or {C:attention}5{} ",
                     "{C:green}X#3#{} other cards",
@@ -637,7 +628,6 @@ return {
             c_draft_thefutureismeow = {
                 name = "The Future is Meow",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:attention}lucky 7{}s",
                     "{C:green}X#3#{} other cards",
                     "Create a {C:attention}Lucky Cat{}"
@@ -646,7 +636,6 @@ return {
             c_draft_psychichex = {
                 name = "Psychic Hex",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:attention}Enhanced 6{}s",
                     "{C:green}X#3#{} other cards",
                     "Create a {C:attention}Sixth Sense{}"
@@ -655,7 +644,6 @@ return {
             c_draft_whoyougonnacall = {
                 name = "Who You Gonna Call",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:attention}4{}s and {C:attention}10{}s",
                     "{C:green}X#3#{} other cards",
                     "Create a {C:attention}Walkie Talkie{}"
@@ -664,7 +652,6 @@ return {
             c_draft_stowaway = {
                 name = "Stowaway",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create a {C:attention}Riff-Raff{}"
                 },
@@ -672,7 +659,6 @@ return {
             c_draft_illicitshipment = {
                 name = "Illicit Shipment",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create a {C:attention}Gros Michel{}"
                 },
@@ -680,7 +666,6 @@ return {
             c_draft_exoticshipment = {
                 name = "Exotic Shipment",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} {C:bunco_exotic}Exotic{} cards",
                     "{C:green}X#2#{} other cards"
                 },
@@ -688,7 +673,6 @@ return {
             c_draft_polymerchains = {
                 name = "Polymer Chains",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{}  cards",
                     "Create an {C:bunco_virtual_dark}Arcade Tag{}"
                 },
@@ -696,7 +680,6 @@ return {
             c_draft_allalone = {
                 name = "All Alone",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards with",
                     "{C:red}no{} {C:attention}face{} cards"
                 },
@@ -704,7 +687,6 @@ return {
             c_draft_investinyourself = {
                 name = "Invest in Yourself",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create an {C:green}Investment Tag{}"
                 },
@@ -712,7 +694,6 @@ return {
             c_draft_overdraft = {
                 name = "Overdraft",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create an {C:packet}Draft Tag{}"
                 },
@@ -720,7 +701,6 @@ return {
             c_draft_yourreadingis = {
                 name = "Your Reading Is...",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create a {C:tarot}Charm Tag{}"
                 },
@@ -728,7 +708,6 @@ return {
             c_draft_spectralprocession = {
                 name = "Spectral Procession",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create a {C:spectral}Ethereal Tag{}"
                 },
@@ -736,7 +715,6 @@ return {
             c_draft_aimforthestars = {
                 name = "Aim for the Stars",
                 text = {
-                    "{C:money}#1#{}",
                     "{C:green}X#2#{} cards",
                     "Create a {C:planet}Meteor Tag{}"
                 },
