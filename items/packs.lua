@@ -6,7 +6,7 @@ SMODS.Booster {
     atlas = "pack_atlas",
     pos = { x = 0, y = 0 },
     config = {extra = 3, choose = 1, skip_cost = -3},
-    cost = 4,
+    cost = 0,
     order = 1,
     weight = 0.96,
     create_card = function(self, card, i)
@@ -24,7 +24,7 @@ SMODS.Booster {
         return { vars = { card.config.center.config.choose, card.ability.extra } }
     end,
     group_key = "k_draft_draft_pack",
-	in_pool = function(self, args) return false end,
+	in_pool = function(self, args) return Draft.config.include_in_run end,
 	create_UIBox = function(self)
 		local _size = SMODS.OPENED_BOOSTER.ability.extra
 		G.pack_cards = CardArea(
@@ -69,7 +69,7 @@ SMODS.Booster {
     atlas = "pack_atlas",
     pos = { x = 0, y = 0 },
     config = {extra = 5, choose = 2, skip_cost = -5},
-    cost = 4,
+    cost = 0,
     order = 1,
     weight = 0.96,
     create_card = function(self, card, i)
@@ -87,7 +87,7 @@ SMODS.Booster {
         return { vars = { card.config.center.config.choose, card.ability.extra } }
     end,
     group_key = "k_draft_draft_pack",
-	in_pool = function(self, args) return false end,
+	--in_pool = function(self, args) return false end,
 	create_UIBox = function(self)
 		local _size = SMODS.OPENED_BOOSTER.ability.extra
 		G.pack_cards = CardArea(
@@ -232,6 +232,32 @@ SMODS.Booster {
 				}}}}}}
 		return t
 	end,
+}
+
+--Clipper pack
+SMODS.Booster {
+    object_type = "Booster",
+    key = "clipper_pack_1",
+    kind = "Clipper",
+    atlas = "pack_atlas",
+    pos = { x = 2, y = 0 },
+    config = {extra = 3, choose = 1},
+    cost = 4,
+    order = 1,
+    weight = 0.96,
+    create_card = function(self, card, i)
+		return create_card("Clipper", G.pack_cards, nil, nil, true, true, nil, "draft_clipper")
+    end,
+    ease_background_colour = function(self)
+        ease_colour(G.C.DYN_UI.MAIN, G.C.SET.Clipper)
+        ease_background_colour({ new_colour = G.C.BLACK, special_colour = G.C.SET.Clipper, contrast = 2 })
+    end,
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.config.center.config.choose, card.ability.extra } }
+    end,
+    group_key = "k_draft_clipper_pack",
+	draw_hand = true,
+	in_pool = function(self, args) return Draft.config.include_in_run end,
 }
 
 --Draft tag
@@ -392,6 +418,46 @@ SMODS.Tag {
 		end
 	end,
 	in_pool = function(self, args) return false end
+}
+
+--Clipper tag
+SMODS.Tag {
+	object_type = "Tag",
+	atlas = "tag_atlas",
+	name = "draft-clippertag",
+	order = 26,
+	pos = { x = 4, y = 0 },
+	config = { type = "new_blind_choice" },
+	key = "clippertag",
+	min_ante = 2,
+	loc_vars = function(self, info_queue)
+		info_queue[#info_queue + 1] = { set = "Other", key = "p_draft_clipper_pack", specific_vars = { 1, 3 } }
+		return { vars = {} }
+	end,
+	apply = function(self, tag, context)
+		if context.type == "new_blind_choice" then
+			tag:yep("+", G.C.SECONDARY_SET.Packet, function()
+				local key = "p_draft_clipper_pack_" .. math.random(1, 1)
+				local card = Card(
+					G.play.T.x + G.play.T.w / 2 - G.CARD_W * 1.27 / 2,
+					G.play.T.y + G.play.T.h / 2 - G.CARD_H * 1.27 / 2,
+					G.CARD_W * 1.27,
+					G.CARD_H * 1.27,
+					G.P_CARDS.empty,
+					G.P_CENTERS[key],
+					{ bypass_discovery_center = true, bypass_discovery_ui = true }
+				)
+				card.cost = 0
+				card.from_tag = true
+				G.FUNCS.use_card({ config = { ref_table = card } })
+				card:start_materialize()
+				return true
+			end)
+			tag.triggered = true
+			return true
+		end
+	end,
+	in_pool = function(self, args) return Draft.config.include_in_run end
 }
 
 --minior tag (used for planetary alignment)

@@ -6,10 +6,10 @@
 	"description": "A Balatro mod that adds decks that replace standard deck construction.",
 	"prefix": "draft",
 	"main_file": "draft.lua",
-	"priority": 100000,
+	"priority": 15,
 	"badge_colour": "986b41",
 	"badge_text_colour": "d7ba89",
-	"version": "0.5.2",
+	"version": "0.6.0",
 	"dependencies": [
 		"Steamodded (>=1.0.0~ALPHA-1304a)"
 	]

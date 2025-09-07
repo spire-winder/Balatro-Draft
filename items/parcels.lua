@@ -741,7 +741,7 @@ local illicitshipment = SMODS.Consumable {
     end,
 }
 
-
+if Draft.config.soul_cards then
 --godsend
 SMODS.Consumable {
 	set = "Spectral",
@@ -777,6 +777,7 @@ SMODS.Consumable {
         })
     end,
 }
+end
 
 if BUNCOMOD then
     --exoticshipment

@@ -101,6 +101,32 @@ if CardSleeves then
 			end
 		end,
 	})
+	local clippersleeve = CardSleeves.Sleeve({
+		key = "clippersleeve",
+		name = "draft-clippersleeve",
+		atlas = "draft_sleeve_atlas",
+		pos = { x = 3, y = 0 },
+		config = { num_packs = 3},
+		unlocked = true,
+		unlock_condition = { deck = "Rending Deck", stake = 1 },
+		loc_vars = function(self)
+			local key, vars
+			vars = { self.config.num_packs }
+			key = self.key
+			return { key = key, vars = vars }
+		end,
+		trigger_effect = function(self, args) end,
+		apply = function(self)
+			G.E_MANAGER:add_event(Event({
+				func = function()
+					for i = 1, self.config.num_packs do
+						add_tag(Tag('tag_draft_clippertag'))
+					end
+					return true
+				end
+			}))
+		end,
+	})
 	local evolvingsleeve = CardSleeves.Sleeve{
 		key = "evolvingsleeve",
 		name = "draft-evolvingsleeve",

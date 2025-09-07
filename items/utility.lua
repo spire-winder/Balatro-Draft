@@ -448,7 +448,19 @@ G.FUNCS.destroy_cards_in_hand = function(t)
     end
     if t.amount_random then
         local temp_hand = {}
-        for k, v in ipairs(G.hand.cards) do temp_hand[#temp_hand+1] = v end
+        if t.only_unselected then
+            local selected = {}
+            for index, value in ipairs(G.hand.highlighted) do
+                selected[value] = true
+            end
+            for index, value in ipairs(G.hand.cards) do
+                if not selected[value] then
+                    temp_hand[#temp_hand+1] = value
+                end
+            end
+        else
+            for k, v in ipairs(G.hand.cards) do temp_hand[#temp_hand+1] = v end
+        end
         table.sort(temp_hand, function (a, b) return not a.playing_card or not b.playing_card or a.playing_card < b.playing_card end)
         pseudoshuffle(temp_hand, pseudoseed('draft_destroy'))
 
@@ -459,27 +471,46 @@ G.FUNCS.destroy_cards_in_hand = function(t)
                 break
             end
             if not temp_hand[i].ability.eternal and not targets[temp_hand[i]] then
+                if t.no_face and temp_hand[i]:is_face() then
+                    goto continue
+                end
                 targets[temp_hand[i]] = true
                 total_added = total_added + 1
             end
+            ::continue::
             i = i + 1
         end
     end
+    if t.all_cards then
+        for index, value in ipairs(G.hand.cards) do
+            targets[value] = true
+        end
+    end
     if t.all_unselected then
-        print("doin the thing")
         local selected = {}
         for index, value in ipairs(G.hand.highlighted) do
             selected[value] = true
         end
-        dissect(selected)
         for index, value in ipairs(G.hand.cards) do
-            print("aa")
             if not value.ability.eternal and not selected[value] then
                 targets[value] = true
             end
         end
     end
-    dissect(targets)
+    if t.all_face then
+        for index, value in ipairs(G.hand.cards) do
+            if not value.ability.eternal and value:is_face() then
+                targets[value] = true
+            end
+        end
+    end
+    if t.all_below then
+        for index, value in ipairs(G.hand.cards) do
+            if not value.ability.eternal and value.base.nominal <= t.all_below then
+                targets[value] = true
+            end
+        end
+    end
     local cards_to_destroy = {}
     for key, value in pairs(targets) do
         cards_to_destroy[#cards_to_destroy+1] = key
@@ -518,6 +549,7 @@ function loc_colour(_c, _default)
       end]]
 	  G.ARGS.LOC_COLOURS.packet = G.C.SET.Packet
 	  G.ARGS.LOC_COLOURS.parcel = G.C.SET.Parcel
+	  G.ARGS.LOC_COLOURS.clipper = G.C.SET.Clipper
 	  return lc(_c, _default)
 end
 

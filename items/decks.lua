@@ -49,6 +49,27 @@ SMODS.Back{
 	end,
 }
 
+SMODS.Back{
+	name = "draft-clipperdeck",
+	key = "clipperdeck",
+	pos = {x = 3, y = 0},
+	config = { num_packs = 3},
+	atlas = "deck_atlas",
+	loc_vars = function(self)
+		return { vars = { self.config.num_packs }}
+	end,
+	apply = function(self)
+		G.E_MANAGER:add_event(Event({
+			func = function()
+				for i = 1, self.config.num_packs, 1 do
+					add_tag(Tag('tag_draft_clippertag'))
+				end
+                play_sound('generic1', 0.9 + math.random()*0.1, 0.8)
+				return true
+			end}))
+	end
+}
+
 local evolvingdeck = SMODS.Back{
 	name = "draft-evolvingdeck",
 	key = "evolvingdeck",
