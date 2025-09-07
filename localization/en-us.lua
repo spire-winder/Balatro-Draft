@@ -775,8 +775,8 @@ return {
             c_draft_sharktooth = {
                 name = "Shark Tooth",
                 text = {
-                    "Destroy {C:red}all{}",
-                    "cards in hand"
+                    "Destroy {C:red}X#2#-#3#{}",
+                    "{C:attention}random{} cards"
                 },
             },
             c_draft_cleaver = {
@@ -790,19 +790,17 @@ return {
             c_draft_embroideryscissors = {
                 name = "Embroidery Scissors",
                 text = {
-                    "Destroy {C:red}X#2#{}",
-                    "{C:attention}selected{} cards",
-                    "and {C:red}X#3#{}",
-                    "{C:attention}random{} card"
+                    "Destroy {C:red}X#2#{} {C:attention}selected{} cards",
+                    "and {C:red}X#3#{} {C:attention}random{} card"
                 },
             },
             c_draft_butterknife = {
                 name = "Butter Knife",
                 text = {
                     "Destroy {C:red}X#2#{}",
-                    "{C:attention}selected{} cards",
+                    "{C:attention}selected{} card",
                     "and {C:red}X#3#{}",
-                    "{C:attention}random{} card"
+                    "{C:attention}random{} cards"
                 },
             },
             c_draft_club = {

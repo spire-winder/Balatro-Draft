@@ -334,16 +334,16 @@ local sharktooth = SMODS.Consumable {
     atlas = 'clipper_atlas',
     cost = 0,
     order = 1,
-    config = {extra = {cost = 0}},
+    config = {extra = {cost = 0, amount_random_min=2, amount_random_max=5}},
     loc_vars = function(self, info_queue, card)
-        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost)} }
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount_random_min, card.ability.extra.amount_random_max} }
     end,
     can_use = function(self, card)
         return #G.hand.cards > 0
     end,
     use = function(self, card, area, copier)
         G.FUNCS.clipper_effect(card, {
-            all_cards=true
+            amount_random=pseudorandom('sharktooth', card.ability.extra.amount_random_min, card.ability.extra.amount_random_max)
         })
     end,
 }
