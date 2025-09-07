@@ -1281,6 +1281,7 @@ local chosenone = SMODS.Consumable {
         G.FUNCS.packet_effect(card, {nocards=true})
     end,
 }
+if Draft.config.soul_cards then
 --boon
 SMODS.Consumable {
 	set = "Spectral",
@@ -1313,6 +1314,7 @@ SMODS.Consumable {
         G.FUNCS.packet_effect(card, {nocards=true})
 	end,
 }
+end
 
 local PacketPositive = SMODS.ObjectType {
     key="PacketPositive",

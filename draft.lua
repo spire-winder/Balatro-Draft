@@ -33,13 +33,13 @@ SMODS.Atlas {
 	py = 95,
 }
 
---[[SMODS.Atlas {
+SMODS.Atlas {
 	object_type = "Atlas",
 	key = "clipper_atlas",
 	path = "clippers.png",
 	px = 71,
 	py = 95,
-}]]
+}
 
 SMODS.Atlas {
 	object_type = "Atlas",
@@ -78,6 +78,7 @@ Draft = SMODS.current_mod
 assert(SMODS.load_file("items/utility.lua"))()
 assert(SMODS.load_file("items/packets.lua"))()
 assert(SMODS.load_file("items/parcels.lua"))()
+assert(SMODS.load_file("items/clippers.lua"))()
 assert(SMODS.load_file("items/packs.lua"))()
 --assert(SMODS.load_file("items/draft_modes.lua"))()
 assert(SMODS.load_file("items/ui.lua"))()
