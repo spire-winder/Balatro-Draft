@@ -1010,6 +1010,7 @@ return {
             k_cryptid = "Cryptid",
             k_bunco = "Bunco",
             k_multisuitmods = "Suit Mods",
+            k_unavailable = "Unavailable",
             mode_not_found_error = "Mode could not be found! Did you remove its mod?",
             
             neutral_packet_collation = "Neutral Packet Collation",

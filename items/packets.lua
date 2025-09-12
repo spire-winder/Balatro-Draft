@@ -1593,65 +1593,54 @@ if BUNCOMOD then
     }
 end
 
-Draft.suitmods = {
-    "Bunco",
-    "magic_the_jokering",
-    "MintysSillyMod",
-    "paperback",
-    "SixSuits",
-    "InkAndColor",
-    "MusicalSuit",
-    "rcbalatro",
-    "sigil",
-    "Wzone",
-    nil, --Stop ipairs from counting past here
-    count = 0,
-    id = "",
-    badge = "None"
-}
-
 Draft.suitmod = function()
-    Draft.suitmods.count = 0
-    for _, v in ipairs(Draft.suitmods) do
-        if (SMODS.Mods[v] or {}).can_load then
-            Draft.suitmods.count = Draft.suitmods.count + 1
-            if Draft.suitmods.count == 1 then Draft.suitmods.id = v end
-            if Draft.suitmods.count == 2 then Draft.suitmods.id = "multisuitmods" break end
+    local suitmodsmap = {}
+    local count = 0
+    local id
+    for k,v in pairs(SMODS.Suits) do
+        if v.mod and not v.fake then
+            if not suitmodsmap[v.mod.id] then
+                suitmodsmap[v.mod.id] = true
+                count = count + 1
+                id = v.mod.id
+            end
         end
     end
-    return Draft.suitmods.count > 0
+    return count > 0, count == 1 and id or "General"
 end
 
-if Draft.suitmod() then
-    --rainbow
-    local rainbow = SMODS.Consumable {
-        set = "Packet",
-        name = "draft-rainbow",
-        key = "rainbow",
-        pos = {x = 2, y = 2},
-        atlas = 'cross_mod_packet_atlas',
-        cost = 0,
-        order = 1,
-        config = {extra = {cost = 0, amount = 5}},
-        loc_vars = function(self, info_queue, card)
-            return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
-        end,
-        can_use = function(self, card)
-            return true
-        end,
-        use = function(self, card, area, copier)
-            enable_exotics()
-            G.FUNCS.packet_effect(card, {one_per_suit=true,allow_hidden=true})
-        end,
-        set_badges = function(self, card, badges)
-            if Draft.suitmods.badge == "None" or Draft.suitmods.badge == "ERROR" then --Localization doesn't exist yet on initial loading, so double-check this 
-                if Draft.suitmods.id == "multisuitmods" then
-                    Draft.suitmods.badge = localize('k_multisuitmods')
-                else
-                    Draft.suitmods.badge = SMODS.Mods[Draft.suitmods.id].display_name
-                end
-            end
-            badges[#badges+1] = create_badge(Draft.suitmods.badge, HEX('666665'), G.C.WHITE, 1 )
-        end,
-    }
-end
+--rainbow
+local rainbow = SMODS.Consumable {
+    set = "Packet",
+    name = "draft-rainbow",
+    key = "rainbow",
+    pos = {x = 2, y = 2},
+    atlas = 'cross_mod_packet_atlas',
+    cost = 0,
+    order = 1,
+    config = {extra = {cost = 0, amount = 5}},
+    loc_vars = function(self, info_queue, card)
+        return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
+    end,
+    can_use = function(self, card)
+        local exist = Draft.suitmod()
+        return exist --if someone sneaks it in somehow despite lack of modded suits, don't let them explode the game with it 👍️
+    end,
+    in_pool = function ()
+        return Draft.suitmod()
+    end,
+    use = function(self, card, area, copier)
+        enable_exotics()
+        G.FUNCS.packet_effect(card, {one_per_suit=true,allow_hidden=true})
+    end,
+    set_badges = function(self, card, badges)
+        local exist,id = Draft.suitmod()
+        if not exist then
+            badges[#badges+1] = create_badge(localize('k_unavailable'), HEX('992222'), G.C.WHITE, 1 )
+        elseif id == "General" then
+            badges[#badges+1] = create_badge(localize('k_multisuitmods'), HEX('666665'), G.C.WHITE, 1 )
+        else
+            badges[#badges+1] = create_badge(SMODS.Mods[id].display_name, SMODS.Mods[id].badge_colour, SMODS.Mods[id].badge_text_colour, 1 )
+        end
+    end,
+}
