@@ -1623,7 +1623,8 @@ local rainbow = SMODS.Consumable {
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
     can_use = function(self, card)
-        return true
+        local exist = Draft.suitmod()
+        return exist --if someone sneaks it in somehow despite lack of modded suits, don't let them explode the game with it 👍️
     end,
     in_pool = function ()
         return Draft.suitmod()
